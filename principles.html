@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How I Think — Judgment in the AI Era</title>
+<meta name="description" content="Five habits for keeping intellectual agency when AI writes the code and the summaries. English and Korean.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#F5F6F8;--surface:#FFFFFF;--surface-2:#EDEFF3;--ink:#171E29;--text:#3A4453;
+    --muted:#6B7482;--line:#DCE0E7;--accent:#22687F;--accent-strong:#1A5266;--accent-soft:#E1EDF1;
+    --shadow:0 1px 2px rgba(23,30,41,.05),0 8px 26px rgba(23,30,41,.07);
+    --fh:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    --fb:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --fm:"SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    --fk:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",var(--fb);
+    --measure:64ch;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0F141B;--surface:#161C25;--surface-2:#1C242F;--ink:#ECF1F7;--text:#C0C9D5;
+    --muted:#8892A1;--line:#29323E;--accent:#5AAAC5;--accent-strong:#7CBFD6;--accent-soft:#15303A;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="light"]{--bg:#F5F6F8;--surface:#FFFFFF;--surface-2:#EDEFF3;--ink:#171E29;--text:#3A4453;--muted:#6B7482;--line:#DCE0E7;--accent:#22687F;--accent-strong:#1A5266;--accent-soft:#E1EDF1;--shadow:0 1px 2px rgba(23,30,41,.05),0 8px 26px rgba(23,30,41,.07);}
+  :root[data-theme="dark"]{--bg:#0F141B;--surface:#161C25;--surface-2:#1C242F;--ink:#ECF1F7;--text:#C0C9D5;--muted:#8892A1;--line:#29323E;--accent:#5AAAC5;--accent-strong:#7CBFD6;--accent-soft:#15303A;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--fb);
+    font-size:1.075rem;line-height:1.72;-webkit-font-smoothing:antialiased;}
+  :root[data-lang="ko"] body{font-family:var(--fk);line-height:1.8;}
+
+  .bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;padding:.7rem clamp(1rem,4vw,2.5rem);background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);
+    font-family:var(--fm);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  .bar a{color:var(--muted);text-decoration:none;} .bar a:hover{color:var(--accent-strong);}
+  .bar strong{color:var(--ink);font-weight:600;} .bar .sep{color:var(--accent);}
+
+  .wrap{max-width:760px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem);}
+
+  header.hero{padding:clamp(2.5rem,7vw,5rem) 0 clamp(1rem,3vw,1.6rem);}
+  .eyebrow{font-family:var(--fm);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1rem;}
+  .eyebrow::before{content:"";width:2rem;height:1px;background:var(--accent);}
+  h1{font-family:var(--fh);color:var(--ink);font-size:clamp(2rem,5.2vw,3.1rem);line-height:1.05;
+    letter-spacing:-.025em;font-weight:800;margin:0 0 1rem;text-wrap:balance;}
+  :root[data-lang="ko"] h1{letter-spacing:-.01em;}
+  .lede{font-size:clamp(1.08rem,2.3vw,1.32rem);line-height:1.5;color:var(--ink);max-width:42ch;margin:0;}
+
+  .langtabs{display:inline-flex;gap:.25rem;margin-top:1.8rem;padding:.28rem;background:var(--surface-2);
+    border:1px solid var(--line);border-radius:999px;}
+  .langtabs button{font-family:var(--fm);font-size:.78rem;letter-spacing:.04em;color:var(--muted);
+    background:transparent;border:0;border-radius:999px;padding:.42rem 1.1rem;cursor:pointer;transition:all .15s;}
+  .langtabs button:hover{color:var(--ink);}
+  .langtabs button[aria-selected="true"]{background:var(--accent);color:#fff;font-weight:600;}
+  :root[data-lang="en"] .lang-ko{display:none;}
+  :root[data-lang="ko"] .lang-en{display:none;}
+
+  /* opening story */
+  .lead{border-left:3px solid var(--accent);padding:.4rem 0 .4rem 1.4rem;margin:1.5rem 0 2.5rem;
+    max-width:var(--measure);}
+  .lead p{margin:0;font-size:1.12rem;line-height:1.62;color:var(--ink);}
+  :root[data-lang="ko"] .lead p{font-size:1.06rem;line-height:1.78;}
+
+  main{padding-bottom:3rem;}
+  .pr{padding:clamp(1.6rem,4vw,2.4rem) 0;border-top:1px solid var(--line);}
+  .pr-head{display:flex;align-items:baseline;gap:.9rem;margin-bottom:.9rem;}
+  .pr-n{font-family:var(--fm);font-size:.9rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums;border:1px solid var(--line);border-radius:6px;
+    padding:.1rem .5rem;background:var(--surface-2);flex:none;}
+  .pr-t{font-family:var(--fh);color:var(--ink);font-size:clamp(1.3rem,3vw,1.7rem);
+    font-weight:700;letter-spacing:-.02em;line-height:1.15;margin:0;text-wrap:balance;}
+  :root[data-lang="ko"] .pr-t{letter-spacing:0;}
+  .pr p{max-width:var(--measure);margin:0;}
+  .pr p em{color:var(--ink);font-style:italic;}
+
+  .close{border-top:2px solid var(--accent);margin-top:1rem;padding:2rem 0 1rem;}
+  .close p{max-width:var(--measure);font-size:1.1rem;color:var(--ink);margin:0;}
+  :root[data-lang="ko"] .close p{font-size:1.04rem;}
+
+  footer{border-top:1px solid var(--line);padding:1.6rem 0 4rem;margin-top:2rem;}
+  footer p{max-width:var(--measure);color:var(--muted);font-size:.92rem;margin:0;}
+  footer a{color:var(--accent-strong);}
+
+  .themebtn{position:fixed;right:1rem;bottom:1rem;z-index:50;font-family:var(--fm);font-size:.72rem;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--surface);
+    border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;cursor:pointer;box-shadow:var(--shadow);}
+  .themebtn:hover{color:var(--accent-strong);border-color:var(--accent);}
+  :where(a,button):focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+  <div class="bar">
+    <span><strong>How I Think</strong> <span class="sep">/</span> <span class="lang-en">judgment in the AI era</span><span class="lang-ko">AI 시대의 판단</span></span>
+    <span><a href="./index.html">&larr; Playbook</a> &nbsp; <a href="./projects.html">Projects</a> &nbsp; <a href="./governance.html">Governance</a></span>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <span class="eyebrow">Working Principles</span>
+      <h1><span class="lang-en">The thinking, not the output.</span><span class="lang-ko">결과물이 아니라, 생각.</span></h1>
+      <p class="lede"><span class="lang-en">Five habits I hold onto to keep my judgment mine &mdash; now that AI writes the code and the summaries.</span><span class="lang-ko">AI가 코드와 요약을 대신 쓰는 시대에, 판단을 내 것으로 지키기 위해 붙드는 다섯 가지 습관.</span></p>
+
+      <div class="langtabs" role="tablist" aria-label="Language">
+        <button id="btn-en" role="tab" aria-selected="true" type="button">English</button>
+        <button id="btn-ko" role="tab" aria-selected="false" type="button">&#54620;&#44397;&#50612;</button>
+      </div>
+    </header>
+
+    <div class="lead">
+      <p><span class="lang-en">In my fourth interview, I stopped trying to write the perfect query. It turned out they'd already assumed I could. What they were actually listening for was everything that happens <em>before</em> the query &mdash; whether I asked who the number was for, whether I checked if the data could even be trusted, whether I said out loud what I'd do differently with more time. AI has made that shift permanent. When a machine can produce a fluent answer in seconds, the value isn't in producing the answer &mdash; it's in knowing whether to trust it.</span><span class="lang-ko">네 번째 면접에서 나는 완벽한 쿼리를 쓰려는 노력을 멈췄다. 그건 이미 할 줄 안다고 전제돼 있었다. 그들이 실제로 듣고 있던 건 쿼리 <em>이전</em>의 모든 것이었다 &mdash; 이 숫자를 누가 쓰는지 물었는지, 데이터를 믿어도 되는지 확인했는지, 시간이 더 있으면 뭘 다르게 할지 소리 내어 말했는지. AI는 이 변화를 영구적으로 만들었다. 기계가 몇 초 만에 매끄러운 답을 내놓을 수 있을 때, 가치는 답을 만드는 데 있지 않다 &mdash; 그 답을 믿어도 되는지 아는 데 있다.</span></p>
+    </div>
+
+    <main>
+      <section class="pr">
+        <div class="pr-head"><span class="pr-n">01</span><h2 class="pr-t"><span class="lang-en">Verify, don't consume</span><span class="lang-ko">소비하지 말고, 검증하라</span></h2></div>
+        <p><span class="lang-en">A fluent answer from an AI isn't my knowledge. It's a draft I haven't checked yet. So I treat every generated output the way I'd treat a model that scored suspiciously well &mdash; I go looking for what's wrong. The assumptions it made quietly, the logic it skipped, the edge case it never considered. The machine is the fast first pass; I'm the auditor of last resort. If I can't explain <em>why</em> the answer is right, I don't have the answer &mdash; I just have access to it.</span><span class="lang-ko">AI의 매끄러운 답은 내 지식이 아니다. 아직 검토하지 않은 초안일 뿐이다. 그래서 생성된 결과는 전부, 수상하게 잘 나온 모델을 대하듯 다룬다 &mdash; 뭐가 틀렸는지 찾으러 간다. 조용히 깔린 가정, 건너뛴 논리, 한 번도 고려하지 않은 예외. 기계는 빠른 초벌이고, 나는 최종 감사자다. 답이 <em>왜</em> 맞는지 설명하지 못하면, 나는 그 답을 가진 게 아니다 &mdash; 그저 접근할 수 있을 뿐이다.</span></p>
+      </section>
+
+      <section class="pr">
+        <div class="pr-head"><span class="pr-n">02</span><h2 class="pr-t"><span class="lang-en">Ask the question the AI can't</span><span class="lang-ko">AI가 못 하는 질문을 하라</span></h2></div>
+        <p><span class="lang-en">AI is extraordinary at retrieval and pattern-matching &mdash; the <em>how</em>. It's much weaker at the questions that decide whether the work matters at all: What's the real problem here? Why does anyone care? So what if we're right? Those are mine to own. A model will happily optimize a metric no one should be chasing. Defining the right question &mdash; and being willing to say the question itself is wrong &mdash; is the part that doesn't automate.</span><span class="lang-ko">AI는 검색과 패턴 매칭 &mdash; <em>어떻게</em> &mdash; 에 비범하다. 하지만 이 일이 애초에 의미가 있는지를 가르는 질문엔 훨씬 약하다: 진짜 문제가 뭔가? 누가 왜 신경 쓰는가? 맞다 한들 그래서 뭐가 달라지는가? 그건 내 몫이다. 모델은 아무도 쫓지 말아야 할 지표를 기꺼이 최적화해준다. 옳은 질문을 정의하는 것 &mdash; 그리고 그 질문 자체가 틀렸다고 말할 용기 &mdash; 이건 자동화되지 않는다.</span></p>
+      </section>
+
+      <section class="pr">
+        <div class="pr-head"><span class="pr-n">03</span><h2 class="pr-t"><span class="lang-en">Keep the muscle</span><span class="lang-ko">근육을 유지하라</span></h2></div>
+        <p><span class="lang-en">Here's the trap: the better AI gets, the less I practice the fundamentals that let me judge it. So I build some things from scratch on purpose. I read the hard paper slowly instead of the summary. Not out of nostalgia &mdash; because the day I can't tell a good AI answer from a plausible-but-wrong one is the day I've outsourced the only thing I was actually for. The slowness is deliberate, and it's an investment.</span><span class="lang-ko">함정은 이렇다: AI가 좋아질수록, 그걸 판단하게 해주는 기초를 나는 덜 연습하게 된다. 그래서 어떤 건 일부러 맨손으로 만든다. 요약 대신 어려운 논문을 천천히 읽는다. 향수 때문이 아니다 &mdash; 좋은 AI 답과 그럴듯하지만 틀린 답을 구별하지 못하게 되는 날이, 내가 존재했던 유일한 이유를 외주 준 날이기 때문이다. 느림은 의도된 것이고, 투자다.</span></p>
+      </section>
+
+      <section class="pr">
+        <div class="pr-head"><span class="pr-n">04</span><h2 class="pr-t"><span class="lang-en">Don't get steered</span><span class="lang-ko">끌려가지 마라</span></h2></div>
+        <p><span class="lang-en">Every AI has a grain to it &mdash; the shape its training and its prompts nudge you toward. Templates make you fill in their blanks; a confident summary makes you stop questioning. I try to stay aware of the current I'm being carried by. Whose framing is this? What did the tool quietly leave out? The real danger isn't a wrong answer I can catch &mdash; it's a subtly narrowed set of questions I never think to ask, because the tool never surfaced them.</span><span class="lang-ko">모든 AI엔 결이 있다 &mdash; 학습과 프롬프트가 당신을 밀어붙이는 방향. 템플릿은 그들의 빈칸을 채우게 만들고, 자신 있는 요약은 질문을 멈추게 만든다. 나는 내가 실려 가는 물살을 알아채려 애쓴다. 이건 누구의 프레이밍인가? 도구가 조용히 뺀 건 뭔가? 진짜 위험은 내가 잡아낼 수 있는 틀린 답이 아니다 &mdash; 도구가 꺼내주지 않아서 아예 떠올리지도 못한, 미묘하게 좁혀진 질문의 범위다.</span></p>
+      </section>
+
+      <section class="pr">
+        <div class="pr-head"><span class="pr-n">05</span><h2 class="pr-t"><span class="lang-en">Spend the saved time on harder problems</span><span class="lang-ko">아낀 시간을 더 어려운 문제에</span></h2></div>
+        <p><span class="lang-en">AI hands me hours back. The temptation is to finish faster and call it a day. I'd rather spend those hours going deeper &mdash; the problem I was avoiding because it was too hard, the analysis I never had time to do properly. If automation just makes me produce more shallow work, I've lost. If it lets me take on questions I couldn't have touched before, that's the whole point.</span><span class="lang-ko">AI는 시간을 돌려준다. 유혹은 더 빨리 끝내고 하루를 접는 것이다. 나는 그 시간을 더 깊이 들어가는 데 쓰고 싶다 &mdash; 너무 어려워서 피하던 문제, 제대로 할 시간이 없던 분석. 자동화가 나를 얕은 일을 더 많이 하게 만들 뿐이라면, 진 것이다. 전엔 손댈 수 없던 질문을 다룰 수 있게 해준다면, 그게 핵심이다.</span></p>
+      </section>
+
+      <div class="close">
+        <p><span class="lang-en">The thread through all five: AI should <strong>amplify</strong> judgment, not replace it. The moment I confuse accessing an answer with understanding it, I've become a passive consumer of my own work. These habits are how I stay the author.</span><span class="lang-ko">다섯을 관통하는 하나: AI는 판단을 대체가 아니라 <strong>증폭</strong>해야 한다. 답에 접근하는 것과 이해하는 것을 혼동하는 순간, 나는 내 일의 수동적 소비자가 된다. 이 습관들은 내가 저자로 남는 방법이다.</span></p>
+      </div>
+    </main>
+
+    <footer>
+      <p><a href="./index.html"><span class="lang-en">&larr; How I build (the Playbook)</span><span class="lang-ko">&larr; 어떻게 만드나 (플레이북)</span></a> &nbsp;&middot;&nbsp; <a href="./projects.html"><span class="lang-en">What I've built</span><span class="lang-ko">무엇을 만들었나</span></a></p>
+    </footer>
+  </div>
+
+  <button class="themebtn" id="themeBtn" type="button" aria-label="Toggle color theme">Theme</button>
+  <script>
+    (function(){
+      var root=document.documentElement;
+      try{var st=localStorage.getItem('pb-theme'); if(st) root.setAttribute('data-theme',st);}catch(e){}
+      document.getElementById('themeBtn').addEventListener('click',function(){
+        var cur=root.getAttribute('data-theme');
+        if(!cur) cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+        var next=cur==='dark'?'light':'dark';
+        root.setAttribute('data-theme',next);
+        try{localStorage.setItem('pb-theme',next);}catch(e){}
+      });
+      var enB=document.getElementById('btn-en'), koB=document.getElementById('btn-ko');
+      function setLang(l){
+        root.setAttribute('data-lang',l); root.setAttribute('lang', l==='ko'?'ko':'en');
+        enB.setAttribute('aria-selected', l==='en'?'true':'false');
+        koB.setAttribute('aria-selected', l==='ko'?'true':'false');
+        try{localStorage.setItem('pb-lang',l);}catch(e){}
+      }
+      var savedL='en'; try{savedL=localStorage.getItem('pb-lang')||'en';}catch(e){}
+      setLang(savedL);
+      enB.addEventListener('click',function(){setLang('en');});
+      koB.addEventListener('click',function(){setLang('ko');});
+    })();
+  </script>
+</body>
+</html>
