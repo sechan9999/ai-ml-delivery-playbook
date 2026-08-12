@@ -7,6 +7,8 @@ governed production** — with a bias toward regulated, human-in-the-loop enviro
 
 **🚀 Hackathon projects (explained simply, EN / 한국어):** https://sechan9999.github.io/ai-ml-delivery-playbook/projects.html
 
+**⚖️ AI governance frameworks (SR 11-7 · NIST AI RMF · EU AI Act) on one page:** https://sechan9999.github.io/ai-ml-delivery-playbook/governance.html
+
 ---
 
 ## What's inside

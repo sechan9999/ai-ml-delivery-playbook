@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SR 11-7 · NIST AI RMF · EU AI Act — 한 장 비교</title>
+<meta name="description" content="세 가지 AI 거버넌스 / 모델 리스크 프레임워크를 한 장으로 비교 — 무엇이 다르고 어떻게 함께 쓰나, 원문 링크 포함.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+  .site-bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;padding:.7rem clamp(1rem,4vw,2.5rem);background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line);
+    font-family:var(--fm);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  .site-bar a{color:var(--muted);text-decoration:none;}
+  .site-bar a:hover{color:var(--accent-strong);}
+  .site-bar strong{color:var(--ink);font-weight:600;}
+  .site-bar .sep{color:var(--accent);}
+  .themebtn{position:fixed;right:1rem;bottom:1rem;z-index:50;font-family:var(--fm);font-size:.72rem;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--surface);
+    border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;cursor:pointer;}
+  .themebtn:hover{color:var(--accent-strong);border-color:var(--accent);}
+  :where(a,button):focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px;}
+</style>
+</head>
+<body>
+<div class="site-bar">
+  <span><strong>AI Governance</strong> <span class="sep">/</span> SR 11-7 &middot; NIST &middot; EU AI Act</span>
+  <span><a href="./index.html">&larr; Playbook</a> &nbsp; <a href="./projects.html">Projects</a></span>
+</div>
+<style>
+  :root{
+    --bg:#F5F6F8;--surface:#FFFFFF;--surface-2:#EDEFF3;--ink:#171E29;--text:#3A4453;
+    --muted:#6B7482;--line:#DCE0E7;--accent:#22687F;--accent-strong:#1A5266;
+    /* framework hues (semantic, not decorative) */
+    --f1:#2A6F8E;--f1-soft:#E1EDF1;         /* SR 11-7 — blue */
+    --f2:#2C7A5B;--f2-soft:#E1EFE8;         /* NIST — green */
+    --f3:#B0791F;--f3-soft:#F5EBD6;         /* EU AI Act — amber */
+    --shadow:0 1px 2px rgba(23,30,41,.05),0 8px 26px rgba(23,30,41,.07);
+    --fh:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    --fb:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --fm:"SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+    --fk:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",var(--fb);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0F141B;--surface:#161C25;--surface-2:#1C242F;--ink:#ECF1F7;--text:#C0C9D5;
+    --muted:#8892A1;--line:#29323E;--accent:#5AAAC5;--accent-strong:#7CBFD6;
+    --f1:#5AA9C4;--f1-soft:#15303A;--f2:#5FC095;--f2-soft:#14251D;--f3:#D6A75E;--f3-soft:#271F12;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="light"]{--bg:#F5F6F8;--surface:#FFFFFF;--surface-2:#EDEFF3;--ink:#171E29;--text:#3A4453;--muted:#6B7482;--line:#DCE0E7;--accent:#22687F;--accent-strong:#1A5266;--f1:#2A6F8E;--f1-soft:#E1EDF1;--f2:#2C7A5B;--f2-soft:#E1EFE8;--f3:#B0791F;--f3-soft:#F5EBD6;--shadow:0 1px 2px rgba(23,30,41,.05),0 8px 26px rgba(23,30,41,.07);}
+  :root[data-theme="dark"]{--bg:#0F141B;--surface:#161C25;--surface-2:#1C242F;--ink:#ECF1F7;--text:#C0C9D5;--muted:#8892A1;--line:#29323E;--accent:#5AAAC5;--accent-strong:#7CBFD6;--f1:#5AA9C4;--f1-soft:#15303A;--f2:#5FC095;--f2-soft:#14251D;--f3:#D6A75E;--f3-soft:#271F12;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);}
+
+  *{box-sizing:border-box;}
+  .g-root{background:var(--bg);color:var(--text);font-family:var(--fk);line-height:1.6;
+    padding:clamp(1.2rem,4vw,2.5rem);-webkit-font-smoothing:antialiased;}
+  .g-wrap{max-width:1080px;margin:0 auto;}
+
+  .g-eyebrow{font-family:var(--fm);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:.6rem;margin-bottom:.9rem;}
+  .g-eyebrow::before{content:"";width:1.8rem;height:1px;background:var(--accent);}
+  h1.g-h1{font-family:var(--fh);color:var(--ink);font-size:clamp(1.7rem,4.5vw,2.7rem);line-height:1.08;
+    letter-spacing:-.02em;font-weight:800;margin:0 0 .6rem;}
+  .g-sub{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--muted);margin:0 0 1.8rem;max-width:52ch;}
+
+  /* hook strip */
+  .g-hooks{display:grid;grid-template-columns:1fr;gap:.6rem;margin:0 0 2rem;}
+  @media(min-width:720px){.g-hooks{grid-template-columns:repeat(3,1fr);}}
+  .g-hook{border-radius:10px;padding:.85rem 1rem;border:1px solid var(--line);}
+  .g-hook .n{font-family:var(--fm);font-size:.72rem;font-weight:700;letter-spacing:.02em;}
+  .g-hook .q{font-family:var(--fh);font-weight:700;color:var(--ink);font-size:1.05rem;margin-top:.15rem;}
+  .g-hook.h1{background:var(--f1-soft);border-color:var(--f1);} .g-hook.h1 .n{color:var(--f1);}
+  .g-hook.h2{background:var(--f2-soft);border-color:var(--f2);} .g-hook.h2 .n{color:var(--f2);}
+  .g-hook.h3{background:var(--f3-soft);border-color:var(--f3);} .g-hook.h3 .n{color:var(--f3);}
+
+  /* comparison cards */
+  .g-cards{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2.2rem;}
+  @media(min-width:820px){.g-cards{grid-template-columns:repeat(3,1fr);}}
+  .g-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+    overflow:hidden;display:flex;flex-direction:column;}
+  .g-card .top{padding:1rem 1.15rem;border-top:4px solid;}
+  .g-card.c1 .top{border-color:var(--f1);} .g-card.c2 .top{border-color:var(--f2);} .g-card.c3 .top{border-color:var(--f3);}
+  .g-card .name{font-family:var(--fh);font-weight:800;color:var(--ink);font-size:1.25rem;letter-spacing:-.01em;}
+  .g-card .who{font-family:var(--fm);font-size:.72rem;color:var(--muted);margin-top:.25rem;letter-spacing:.02em;}
+  .g-badge{display:inline-block;font-family:var(--fm);font-size:.66rem;font-weight:700;letter-spacing:.03em;
+    padding:.2rem .55rem;border-radius:999px;margin-top:.55rem;}
+  .g-card.c1 .g-badge{background:var(--f1-soft);color:var(--f1);}
+  .g-card.c2 .g-badge{background:var(--f2-soft);color:var(--f2);}
+  .g-card.c3 .g-badge{background:var(--f3-soft);color:var(--f3);}
+  .g-card .body{padding:0 1.15rem 1.15rem;display:flex;flex-direction:column;gap:.75rem;flex:1;}
+  .g-row .l{font-family:var(--fm);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;display:block;margin-bottom:.15rem;}
+  .g-row .v{font-size:.95rem;color:var(--text);}
+  .g-row .v strong{color:var(--ink);}
+  .g-struct{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+  .g-struct li{font-size:.9rem;padding-left:1.2rem;position:relative;}
+  .g-struct li::before{content:"";position:absolute;left:0;top:.55em;width:.42rem;height:.42rem;border-radius:2px;}
+  .g-card.c1 .g-struct li::before{background:var(--f1);}
+  .g-card.c2 .g-struct li::before{background:var(--f2);}
+  .g-card.c3 .g-struct li::before{background:var(--f3);}
+  .g-struct li strong{color:var(--ink);}
+  .g-src{margin-top:auto;padding-top:.6rem;border-top:1px solid var(--line);}
+  .g-src a{font-family:var(--fm);font-size:.74rem;text-decoration:none;color:var(--accent-strong);word-break:break-all;}
+  .g-src a:hover{text-decoration:underline;}
+
+  /* layers */
+  .g-sec{font-family:var(--fh);font-weight:700;color:var(--ink);font-size:1.15rem;margin:0 0 1rem;
+    border-left:3px solid var(--accent);padding-left:.7rem;}
+  .g-layers{display:flex;flex-direction:column;gap:.55rem;margin-bottom:2.2rem;}
+  .g-layer{display:flex;align-items:center;gap:1rem;border-radius:10px;padding:.85rem 1.1rem;border:1px solid var(--line);}
+  .g-layer .tag{font-family:var(--fm);font-size:.74rem;font-weight:700;flex:none;min-width:120px;}
+  .g-layer .desc{font-size:.95rem;color:var(--text);}
+  .g-layer.l3{background:var(--f3-soft);} .g-layer.l3 .tag{color:var(--f3);}
+  .g-layer.l2{background:var(--f2-soft);} .g-layer.l2 .tag{color:var(--f2);}
+  .g-layer.l1{background:var(--f1-soft);} .g-layer.l1 .tag{color:var(--f1);}
+
+  /* CDC mapping */
+  .g-map{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:12px;box-shadow:var(--shadow);padding:1.2rem 1.35rem;margin-bottom:2rem;}
+  .g-map h3{font-family:var(--fh);color:var(--ink);margin:0 0 .3rem;font-size:1.1rem;}
+  .g-map .note{font-size:.9rem;color:var(--muted);margin:0 0 .9rem;}
+  .g-tablewrap{overflow-x:auto;}
+  table.g-t{border-collapse:collapse;width:100%;font-size:.92rem;min-width:440px;}
+  table.g-t th,table.g-t td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.g-t th{font-family:var(--fm);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  table.g-t td:first-child{color:var(--muted);} table.g-t td strong{color:var(--ink);}
+  table.g-t tr:last-child td{border-bottom:none;}
+
+  .g-foot{font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);padding-top:1rem;}
+  .g-foot a{color:var(--accent-strong);}
+  .g-foot .cap{font-family:var(--fm);font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.5rem;}
+</style>
+
+<div class="g-root"><div class="g-wrap">
+  <span class="g-eyebrow">AI 거버넌스 · 모델 리스크</span>
+  <h1 class="g-h1">SR 11-7 &middot; NIST AI RMF &middot; EU AI Act</h1>
+  <p class="g-sub">세 가지를 한 장으로 &mdash; 무엇이 다르고, 어떻게 함께 쓰나. 하나는 <b>감독지침</b>, 하나는 <b>자율 프레임워크</b>, 하나는 <b>강제 법률</b>.</p>
+
+  <div class="g-hooks">
+    <div class="g-hook h1"><span class="n">SR 11-7</span><div class="q">&ldquo;이 모델 믿어도 되나?&rdquo;</div></div>
+    <div class="g-hook h2"><span class="n">NIST AI RMF</span><div class="q">&ldquo;AI를 어떻게 관리하나?&rdquo;</div></div>
+    <div class="g-hook h3"><span class="n">EU AI Act</span><div class="q">&ldquo;안 지키면 벌금&rdquo;</div></div>
+  </div>
+
+  <div class="g-cards">
+    <!-- SR 11-7 -->
+    <div class="g-card c1">
+      <div class="top">
+        <div class="name">SR 11-7</div>
+        <div class="who">美 Fed + OCC &middot; 2011</div>
+        <span class="g-badge">감독지침 · 은행권 사실상 필수</span>
+      </div>
+      <div class="body">
+        <div class="g-row"><span class="l">정체</span><span class="v">모델 리스크 관리(MRM) 지침. 은행용이었으나 지금은 <strong>ML/AI 검증 표준</strong>으로 확장.</span></div>
+        <div class="g-row"><span class="l">핵심 개념</span><span class="v"><strong>Effective Challenge</strong> &mdash; 만든 사람이 아닌 <strong>독립된 사람</strong>의 비판적 검증.</span></div>
+        <div class="g-row"><span class="l">구조 · 3기둥</span>
+          <ul class="g-struct">
+            <li><strong>개발 + 문서화</strong> — 왜 이 방법인지 재구성 가능하게</li>
+            <li><strong>독립 검증</strong> — 개념 타당성 · 지속 감시 · 결과 대조</li>
+            <li><strong>거버넌스</strong> — 모델 목록(inventory) · 감사</li>
+          </ul>
+        </div>
+        <div class="g-src"><a href="https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm" target="_blank" rel="noopener">federalreserve.gov &#8599;</a></div>
+      </div>
+    </div>
+
+    <!-- NIST -->
+    <div class="g-card c2">
+      <div class="top">
+        <div class="name">NIST AI RMF</div>
+        <div class="who">美 NIST &middot; 2023 (v1.0)</div>
+        <span class="g-badge">프레임워크 · 자율(voluntary)</span>
+      </div>
+      <div class="body">
+        <div class="g-row"><span class="l">정체</span><span class="v">AI 리스크 관리 프레임워크. 기업 AI 거버넌스의 <strong>사실상 뼈대</strong>.</span></div>
+        <div class="g-row"><span class="l">핵심</span><span class="v">신뢰 가능한(trustworthy) AI를 위한 <strong>운영 구조</strong>. "무엇을"이 아니라 "어떤 구조로".</span></div>
+        <div class="g-row"><span class="l">구조 · 4함수</span>
+          <ul class="g-struct">
+            <li><strong>Govern</strong> — 정책 · 역할 · 책임</li>
+            <li><strong>Map</strong> — 맥락과 위험 파악</li>
+            <li><strong>Measure</strong> — 평가 · 공정성 · 성능</li>
+            <li><strong>Manage</strong> — 감시 · 대응</li>
+          </ul>
+        </div>
+        <div class="g-src"><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">nist.gov &#8599;</a></div>
+      </div>
+    </div>
+
+    <!-- EU AI Act -->
+    <div class="g-card c3">
+      <div class="top">
+        <div class="name">EU AI Act</div>
+        <div class="who">EU &middot; 2024 (시행 ~2026.8)</div>
+        <span class="g-badge">법률 · 강제 + 벌금</span>
+      </div>
+      <div class="body">
+        <div class="g-row"><span class="l">정체</span><span class="v">EU의 AI <strong>법률</strong>. 셋 중 유일하게 법적 강제력. EU 시장에 AI를 내놓으면 적용.</span></div>
+        <div class="g-row"><span class="l">핵심</span><span class="v"><strong>위험 등급제</strong> &mdash; 위험도로 나눠 의무 차등.</span></div>
+        <div class="g-row"><span class="l">구조 · 4등급</span>
+          <ul class="g-struct">
+            <li><strong>금지</strong> — 소셜 스코어링 등, 불법</li>
+            <li><strong>고위험</strong> — 채용·의료·신용 → 강한 의무</li>
+            <li><strong>제한적</strong> — 챗봇 → "AI임을 밝혀라"</li>
+            <li><strong>최소</strong> — 대부분, 규제 거의 없음</li>
+          </ul>
+        </div>
+        <div class="g-src"><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">eur-lex (공식) &#8599;</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g-sec">셋을 함께 쓰면 &mdash; 경쟁이 아니라 레이어</div>
+  <div class="g-layers">
+    <div class="g-layer l3"><span class="tag">EU AI Act</span><span class="desc"><strong>무엇을</strong> 반드시 지켜야 하나 &mdash; 법적 요구 · 위험 등급</span></div>
+    <div class="g-layer l2"><span class="tag">NIST AI RMF</span><span class="desc">그걸 <strong>어떤 구조로</strong> 운영하나 &mdash; Govern · Map · Measure · Manage</span></div>
+    <div class="g-layer l1"><span class="tag">SR 11-7</span><span class="desc"><strong>각 모델을</strong> 어떻게 검증·감시하나 &mdash; 독립 검증 · 지속 감시</span></div>
+  </div>
+
+  <div class="g-map">
+    <h3>💡 나의 CDC 경험 &rarr; 이 프레임워크 (면접 킬러)</h3>
+    <p class="note">대부분 ML 지원자는 이 프레임워크 이름도 모릅니다. 나는 규제 환경에서 이미 실무로 했습니다.</p>
+    <div class="g-tablewrap">
+      <table class="g-t">
+        <thead><tr><th>프레임워크 요구</th><th>내가 한 것</th></tr></thead>
+        <tbody>
+          <tr><td>SR 11-7 · effective challenge / 독립 검증</td><td><strong>독립 QC</strong> — 다른 분석가가 다른 코드로 결과 재현</td></tr>
+          <tr><td>SR 11-7 · 개념 타당성 + 문서화</td><td><strong>SAP</strong>(Statistical Analysis Plan) — 분석 사전등록</td></tr>
+          <tr><td>NIST · Measure / Manage</td><td>평가 · 검증 · 모니터링</td></tr>
+          <tr><td>EU AI Act · 사람 감독 / 추적성</td><td>audit-ready evidence 생성</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="g-foot">
+    <span class="cap">원문 (공식 출처)</span>
+    &bull; SR 11-7: <a href="https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm" target="_blank" rel="noopener">Federal Reserve SR 11-7</a> (PDF: <a href="https://www.federalreserve.gov/boarddocs/srletters/2011/sr1107.pdf" target="_blank" rel="noopener">sr1107.pdf</a>) · OCC 2011-12<br>
+    &bull; NIST AI RMF: <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">nist.gov/itl/ai-risk-management-framework</a> · <a href="https://airc.nist.gov/airmf-resources/airmf/" target="_blank" rel="noopener">AIRC 리소스</a><br>
+    &bull; EU AI Act: <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">EUR-Lex Reg (EU) 2024/1689</a> · <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">읽기 쉬운 버전</a>
+  </div>
+</div></div>
+<button class="themebtn" id="themeBtn" type="button" aria-label="Toggle color theme">Theme</button>
+<script>
+  (function(){
+    var root=document.documentElement;
+    try{var st=localStorage.getItem('pb-theme'); if(st) root.setAttribute('data-theme',st);}catch(e){}
+    document.getElementById('themeBtn').addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme');
+      if(!cur) cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+      var next=cur==='dark'?'light':'dark';
+      root.setAttribute('data-theme',next);
+      try{localStorage.setItem('pb-theme',next);}catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
