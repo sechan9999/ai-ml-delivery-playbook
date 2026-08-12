@@ -3,7 +3,9 @@
 A practitioner's reference methodology for taking AI/ML systems from **concept to
 governed production** — with a bias toward regulated, human-in-the-loop environments.
 
-**📐 Read it:** https://sechan9999.github.io/ai-ml-delivery-playbook/
+**📐 Read the playbook:** https://sechan9999.github.io/ai-ml-delivery-playbook/
+
+**🚀 Hackathon projects (explained simply, EN / 한국어):** https://sechan9999.github.io/ai-ml-delivery-playbook/projects.html
 
 ---
 
