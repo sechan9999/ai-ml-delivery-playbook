@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI/ML Delivery Playbook</title>
+<meta name="description" content="A practitioner's reference methodology for taking AI/ML systems from concept to governed production — reference architecture, evaluation, responsible AI, and human-in-the-loop patterns.">
+<meta property="og:title" content="AI/ML Delivery Playbook">
+<meta property="og:description" content="A practitioner's reference methodology for taking AI/ML systems from concept to governed production.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E">
+<style>
+  .pb-themebtn{
+    position:fixed; right:1rem; bottom:1rem; z-index:50;
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--muted); background:var(--surface);
+    border:1px solid var(--line); border-radius:999px; padding:.5rem .95rem;
+    cursor:pointer; box-shadow:var(--shadow);
+  }
+  .pb-themebtn:hover{ color:var(--accent-strong); border-color:var(--accent); }
+  .pb-themebtn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #F5F6F8;
+    --surface: #FFFFFF;
+    --surface-2: #EDEFF3;
+    --ink: #171E29;
+    --text: #3A4453;
+    --muted: #6B7482;
+    --line: #DCE0E7;
+    --accent: #22687F;
+    --accent-strong: #1A5266;
+    --accent-soft: #E1EDF1;
+    --gate: #97600F;
+    --gate-soft: #F4EAD7;
+    --gate-line: #E4CFA6;
+    --evidence: #2C6A4D;
+    --evidence-soft: #E2EEE7;
+    --evidence-line: #BEDCC9;
+    --shadow: 0 1px 2px rgba(23,30,41,.05), 0 8px 28px rgba(23,30,41,.06);
+
+    --font-head: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --font-mono: "SF Mono", "JetBrains Mono", "Cascadia Code", ui-monospace, Menlo, Consolas, monospace;
+
+    --measure: 68ch;
+    --step: clamp(2rem, 5vw, 3.25rem);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0F141B;
+      --surface: #161C25;
+      --surface-2: #1C242F;
+      --ink: #ECF1F7;
+      --text: #C0C9D5;
+      --muted: #8892A1;
+      --line: #29323E;
+      --accent: #5AAAC5;
+      --accent-strong: #7CBFD6;
+      --accent-soft: #15303A;
+      --gate: #D6A662;
+      --gate-soft: #271F13;
+      --gate-line: #4A3B22;
+      --evidence: #74C298;
+      --evidence-soft: #15251C;
+      --evidence-line: #274134;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F5F6F8; --surface: #FFFFFF; --surface-2: #EDEFF3; --ink: #171E29;
+    --text: #3A4453; --muted: #6B7482; --line: #DCE0E7; --accent: #22687F;
+    --accent-strong: #1A5266; --accent-soft: #E1EDF1; --gate: #97600F;
+    --gate-soft: #F4EAD7; --gate-line: #E4CFA6; --evidence: #2C6A4D;
+    --evidence-soft: #E2EEE7; --evidence-line: #BEDCC9;
+    --shadow: 0 1px 2px rgba(23,30,41,.05), 0 8px 28px rgba(23,30,41,.06);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F141B; --surface: #161C25; --surface-2: #1C242F; --ink: #ECF1F7;
+    --text: #C0C9D5; --muted: #8892A1; --line: #29323E; --accent: #5AAAC5;
+    --accent-strong: #7CBFD6; --accent-soft: #15303A; --gate: #D6A662;
+    --gate-soft: #271F13; --gate-line: #4A3B22; --evidence: #74C298;
+    --evidence-soft: #15251C; --evidence-line: #274134;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body, .pb-root { margin: 0; }
+  .pb-root {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Top bar */
+  .pb-bar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: .7rem clamp(1rem, 4vw, 2.5rem);
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: saturate(1.2) blur(8px);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: .72rem; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pb-bar strong { color: var(--ink); font-weight: 600; }
+  .pb-bar .pb-dot { color: var(--accent); }
+
+  /* Shell */
+  .pb-shell {
+    max-width: 1120px; margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2.5rem);
+    display: grid; grid-template-columns: 1fr; gap: 0;
+  }
+  @media (min-width: 940px) {
+    .pb-shell { grid-template-columns: 210px minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); }
+  }
+
+  /* Hero */
+  .pb-hero { grid-column: 1 / -1; padding: clamp(3rem, 8vw, 6rem) 0 clamp(1.5rem, 4vw, 3rem); }
+  .pb-eyebrow {
+    font-family: var(--font-mono); font-size: .74rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+    display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.1rem;
+  }
+  .pb-eyebrow::before {
+    content: ""; width: 2rem; height: 1px; background: var(--accent); display: inline-block;
+  }
+  .pb-hero h1 {
+    font-family: var(--font-head); color: var(--ink);
+    font-size: clamp(2.1rem, 5.4vw, 3.5rem); line-height: 1.04;
+    letter-spacing: -0.025em; font-weight: 800; margin: 0 0 1.1rem;
+    text-wrap: balance; max-width: 20ch;
+  }
+  .pb-lede {
+    font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.5; color: var(--ink);
+    max-width: 46ch; margin: 0 0 1.8rem; font-weight: 400;
+  }
+  .pb-standfirst {
+    border-left: 2px solid var(--accent); padding: .2rem 0 .2rem 1.25rem;
+    max-width: var(--measure); color: var(--text); font-style: italic;
+    font-size: 1.02rem; line-height: 1.65;
+  }
+  .pb-meta {
+    display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.8rem;
+  }
+  .pb-tag {
+    font-family: var(--font-mono); font-size: .72rem; letter-spacing: .03em;
+    color: var(--muted); background: var(--surface-2);
+    border: 1px solid var(--line); border-radius: 999px; padding: .28rem .7rem;
+  }
+
+  /* TOC rail */
+  .pb-toc { display: none; }
+  @media (min-width: 940px) {
+    .pb-toc {
+      display: block; position: sticky; top: 4.5rem; align-self: start;
+      padding-top: clamp(3rem, 8vw, 5.5rem);
+      font-family: var(--font-mono); font-size: .78rem; line-height: 1.5;
+    }
+    .pb-toc .pb-toc-label {
+      text-transform: uppercase; letter-spacing: .12em; font-size: .68rem;
+      color: var(--muted); margin-bottom: .9rem;
+    }
+    .pb-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .1rem; }
+    .pb-toc a {
+      display: flex; gap: .6rem; padding: .34rem .5rem; border-radius: 6px;
+      color: var(--text); text-decoration: none; transition: background .15s, color .15s;
+    }
+    .pb-toc a:hover { background: var(--accent-soft); color: var(--accent-strong); }
+    .pb-toc a .pb-n { color: var(--accent); font-variant-numeric: tabular-nums; }
+    .pb-toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  }
+
+  /* Main column */
+  .pb-main { min-width: 0; padding-bottom: 5rem; }
+  .pb-section { padding: clamp(2rem, 5vw, 3.25rem) 0; border-top: 1px solid var(--line); }
+  .pb-section:first-child { border-top: none; }
+  .pb-section > .pb-h {
+    display: flex; align-items: baseline; gap: .9rem; margin: 0 0 1.4rem;
+  }
+  .pb-h .pb-num {
+    font-family: var(--font-mono); font-size: .95rem; font-weight: 600;
+    color: var(--accent); font-variant-numeric: tabular-nums;
+    border: 1px solid var(--line); border-radius: 6px; padding: .12rem .45rem;
+    background: var(--surface-2); flex: none;
+  }
+  .pb-h h2 {
+    font-family: var(--font-head); color: var(--ink); margin: 0;
+    font-size: clamp(1.35rem, 3vw, 1.9rem); letter-spacing: -0.02em;
+    font-weight: 700; line-height: 1.15; text-wrap: balance;
+  }
+  .pb-main p { max-width: var(--measure); margin: 0 0 1.1rem; }
+  .pb-main p.pb-intro { color: var(--ink); font-size: 1.12rem; }
+  .pb-main strong { color: var(--ink); font-weight: 600; }
+  .pb-main a { color: var(--accent-strong); text-decoration-color: var(--accent-soft); text-underline-offset: 3px; }
+  code, .pb-code {
+    font-family: var(--font-mono); font-size: .86em; background: var(--surface-2);
+    border: 1px solid var(--line); border-radius: 5px; padding: .06em .38em; color: var(--ink);
+  }
+
+  /* Lists */
+  .pb-list { max-width: var(--measure); margin: 0 0 1.2rem; padding: 0; list-style: none;
+    display: flex; flex-direction: column; gap: .75rem; }
+  .pb-list.numbered { counter-reset: item; }
+  .pb-list li { position: relative; padding-left: 1.9rem; }
+  .pb-list li::before {
+    content: "\2014"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 700;
+  }
+  .pb-list.numbered li::before {
+    counter-increment: item; content: counter(item);
+    font-family: var(--font-mono); font-size: .78rem; font-weight: 600;
+    top: .16em; color: var(--accent);
+  }
+  .pb-list li strong { color: var(--ink); }
+
+  /* Callouts */
+  .pb-note, .pb-proven {
+    max-width: var(--measure); margin: 1.5rem 0; padding: 1rem 1.2rem;
+    border-radius: 10px; font-size: .98rem; line-height: 1.6;
+  }
+  .pb-note {
+    background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-left: 3px solid var(--accent);
+  }
+  .pb-proven {
+    background: var(--evidence-soft); border: 1px solid var(--evidence-line);
+    border-left: 3px solid var(--evidence);
+  }
+  .pb-tagline {
+    font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em;
+    text-transform: uppercase; font-weight: 600; display: block; margin-bottom: .4rem;
+  }
+  .pb-note .pb-tagline { color: var(--accent-strong); }
+  .pb-proven .pb-tagline { color: var(--evidence); }
+  .pb-note p, .pb-proven p { max-width: none; margin: 0; font-style: normal; }
+  .pb-proven em { font-style: italic; color: var(--ink); }
+
+  /* Tables */
+  .pb-tablewrap { max-width: 100%; overflow-x: auto; margin: 1.3rem 0 1.4rem;
+    border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); background: var(--surface); }
+  table.pb-table { border-collapse: collapse; width: 100%; font-size: .93rem; min-width: 560px; }
+  table.pb-table th, table.pb-table td { text-align: left; padding: .72rem .95rem; vertical-align: top; border-bottom: 1px solid var(--line); }
+  table.pb-table thead th {
+    font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; background: var(--surface-2); position: sticky; top: 0;
+  }
+  table.pb-table tbody tr:last-child td { border-bottom: none; }
+  table.pb-table td strong { color: var(--ink); }
+  table.pb-table .pb-stage { font-family: var(--font-head); font-weight: 700; color: var(--ink); white-space: nowrap; }
+  table.pb-table .pb-gatecell { color: var(--gate); }
+  table.pb-table .pb-gatecell::before { content: "\25B8  "; font-weight: 700; }
+
+  /* Ladder / step blocks */
+  .pb-steps { max-width: var(--measure); counter-reset: step; display: flex; flex-direction: column; gap: .6rem; margin: 1.2rem 0 1.3rem; padding: 0; list-style: none; }
+  .pb-steps li {
+    position: relative; padding: .85rem 1rem .85rem 3.1rem; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 9px;
+  }
+  .pb-steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: .9rem; top: .8rem; width: 1.5rem; height: 1.5rem;
+    display: grid; place-items: center; border-radius: 6px;
+    background: var(--accent); color: #fff; font-family: var(--font-mono);
+    font-size: .8rem; font-weight: 600;
+  }
+  .pb-steps li strong { color: var(--ink); }
+
+  /* Metric chips */
+  .pb-chips { display: flex; flex-wrap: wrap; gap: .5rem; max-width: var(--measure); margin: .3rem 0 1.2rem; }
+  .pb-chip {
+    font-family: var(--font-mono); font-size: .76rem; color: var(--ink);
+    background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 7px; padding: .32rem .6rem;
+  }
+  .pb-chip b { color: var(--accent-strong); font-weight: 600; }
+
+  /* Checklist grid */
+  .pb-checks { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: var(--measure); margin: 1.2rem 0; }
+  @media (min-width: 640px) { .pb-checks { grid-template-columns: repeat(3, 1fr); } }
+  .pb-check { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+  .pb-check h4 { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 0 0 .7rem; }
+  .pb-check ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .5rem; font-size: .92rem; }
+  .pb-check li { position: relative; padding-left: 1.4rem; line-height: 1.4; }
+  .pb-check li::before { content: "\2713"; position: absolute; left: 0; top: 0; color: var(--evidence); font-weight: 700; }
+
+  /* Anti-pattern list */
+  .pb-anti { max-width: var(--measure); display: flex; flex-direction: column; gap: .7rem; margin: 1rem 0 1.2rem; padding: 0; list-style: none; }
+  .pb-anti li { padding-left: 1.8rem; position: relative; }
+  .pb-anti li::before { content: "\2717"; position: absolute; left: 0; top: 0; color: var(--gate); font-weight: 700; }
+  .pb-anti li strong { color: var(--ink); }
+
+  /* Footer */
+  .pb-foot { grid-column: 1 / -1; border-top: 1px solid var(--line); padding: 2.2rem 0 4rem; }
+  .pb-foot p { max-width: var(--measure); font-size: .95rem; color: var(--muted); font-style: italic; margin: 0; }
+
+  :where(a, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  html { scroll-behavior: smooth; }
+  @media print {
+    .pb-bar, .pb-toc { display: none; }
+    .pb-root { background: #fff; color: #000; }
+    .pb-section { break-inside: avoid; }
+  }
+</style>
+
+<div class="pb-root">
+  <div class="pb-bar">
+    <span><strong>AI/ML Delivery Playbook</strong> <span class="pb-dot">/</span> reference methodology</span>
+    <span>v1 &middot; 2026</span>
+  </div>
+
+  <div class="pb-shell">
+    <header class="pb-hero">
+      <span class="pb-eyebrow">Practitioner Reference IP</span>
+      <h1>Concept to governed production.</h1>
+      <p class="pb-lede">A reference methodology for taking AI/ML systems from idea to
+        operation &mdash; with a bias toward regulated, human-in-the-loop environments.</p>
+      <div class="pb-standfirst">
+        This is my working point of view, distilled from systems I have built: a
+        closed-loop agent operations platform, a metadata-governed AI guardrail layer
+        validated against a live catalog, a fully on-prem LLM agent, and regulated
+        statistical modeling for public health. It is opinionated on purpose &mdash; a
+        playbook that hedges every choice is not a playbook.
+      </div>
+      <div class="pb-meta">
+        <span class="pb-tag">Reference architecture</span>
+        <span class="pb-tag">Evaluation &amp; observability</span>
+        <span class="pb-tag">Responsible AI / model risk</span>
+        <span class="pb-tag">Human-in-the-loop</span>
+      </div>
+    </header>
+
+    <nav class="pb-toc" aria-label="Contents">
+      <div class="pb-toc-label">Contents</div>
+      <ol>
+        <li><a href="#s0"><span class="pb-n">00</span> First principles</a></li>
+        <li><a href="#s1"><span class="pb-n">01</span> Reference architecture</a></li>
+        <li><a href="#s2"><span class="pb-n">02</span> Delivery lifecycle</a></li>
+        <li><a href="#s3"><span class="pb-n">03</span> Evaluation ladder</a></li>
+        <li><a href="#s4"><span class="pb-n">04</span> Decision frameworks</a></li>
+        <li><a href="#s5"><span class="pb-n">05</span> Responsible AI &amp; risk</a></li>
+        <li><a href="#s6"><span class="pb-n">06</span> Human-in-the-loop</a></li>
+        <li><a href="#s7"><span class="pb-n">07</span> Observability &amp; ops</a></li>
+        <li><a href="#s8"><span class="pb-n">08</span> Anti-patterns</a></li>
+        <li><a href="#s9"><span class="pb-n">09</span> Pre-flight checklists</a></li>
+      </ol>
+    </nav>
+
+    <main class="pb-main">
+      <section class="pb-section" id="s0">
+        <div class="pb-h"><span class="pb-num">00</span><h2>First principles</h2></div>
+        <ol class="pb-list numbered">
+          <li><strong>The model is the small part.</strong> The system around it &mdash; data, evaluation, governance, observability, human oversight &mdash; is where production value and production risk actually live.</li>
+          <li><strong>A confident wrong answer is the enemy.</strong> Every design choice is measured against whether it makes the system more honest about what it does and does not know.</li>
+          <li><strong>Governance is a property you build in, not a bolt-on.</strong> If traceability, evaluation, and human oversight aren't in the reference architecture, they won't survive delivery pressure.</li>
+          <li><strong>Optimize for reversibility.</strong> Standardize the expensive-to-change layers &mdash; governance, evaluation, data contracts &mdash; early; stay deliberately swappable on the fast-commoditizing layers, above all the model itself.</li>
+          <li><strong>Depth over duration.</strong> Judge an approach by shipped systems and demonstrated failure modes survived, not by how long a tool has existed.</li>
+        </ol>
+      </section>
+
+      <section class="pb-section" id="s1">
+        <div class="pb-h"><span class="pb-num">01</span><h2>Reference architecture: invariants vs substrate</h2></div>
+        <p class="pb-intro">Separate what never changes from what flexes per engagement.</p>
+        <p><strong>Invariant layers</strong> &mdash; fixed across projects:</p>
+        <ul class="pb-list">
+          <li><strong>Feature / context layer</strong> with online&ndash;offline consistency. Train-serve skew is the most common silent production failure.</li>
+          <li><strong>Model (or artifact) registry</strong> &mdash; the system of record for what is deployed, its version, and its validation status. Nothing serves that isn't registered.</li>
+          <li><strong>Evaluation harness</strong> &mdash; every model, prompt, and retriever passes it before promotion.</li>
+          <li><strong>Observability + evidence layer</strong> &mdash; inputs, outputs, drift signals, and a reconstructable record of every consequential decision.</li>
+        </ul>
+        <p><strong>Substrate</strong> &mdash; flexes on data gravity, total cost of ownership, and governance surface:</p>
+        <ul class="pb-list">
+          <li>Data-resident / warehouse-native when the data gravity and governance already live there &mdash; minimizes egress and copy-governance.</li>
+          <li>Cloud-hosted / containerized when custom training, multi-model serving, or low-latency patterns don't fit the warehouse.</li>
+          <li>On-prem / local model serving when data residency or restriction demands it.</li>
+        </ul>
+        <div class="pb-note">
+          <span class="pb-tagline">Principle</span>
+          <p>A reference architecture that dictates <em>tools</em> ages badly; one that dictates <em>guarantees</em> &mdash; consistency, traceability, evaluation-before-promotion &mdash; travels across engagements.</p>
+        </div>
+        <div class="pb-proven">
+          <span class="pb-tagline">Proven in</span>
+          <p>A platform designed for graceful degradation, where every external integration is optional and governance rules live in reviewable config, not code &mdash; so a new engagement swaps the substrate without touching the core.</p>
+        </div>
+      </section>
+
+      <section class="pb-section" id="s2">
+        <div class="pb-h"><span class="pb-num">02</span><h2>The delivery lifecycle &mdash; a gate at every stage</h2></div>
+        <div class="pb-tablewrap">
+          <table class="pb-table">
+            <thead>
+              <tr><th>Stage</th><th>Key decision</th><th>The gate before advancing</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="pb-stage">Frame</td><td>Prediction problem or decision problem? Who acts on the output?</td><td class="pb-gatecell">A written estimand tied to a real decision &mdash; not &ldquo;improve X.&rdquo;</td></tr>
+              <tr><td class="pb-stage">Ingest</td><td>Structured, unstructured, documents? Batch or incremental?</td><td class="pb-gatecell">Data-quality gates that stop bad data <em>before</em> it reaches modeling.</td></tr>
+              <tr><td class="pb-stage">Model</td><td>Classical, deep, or LLM/RAG? (see &sect;04)</td><td class="pb-gatecell">Reproducible, versioned pipeline &mdash; not notebook-only.</td></tr>
+              <tr><td class="pb-stage">Evaluate</td><td>Offline metrics + representative test set + subgroups</td><td class="pb-gatecell">Meets pre-registered thresholds incl. disaggregated subgroup performance.</td></tr>
+              <tr><td class="pb-stage">Deploy</td><td>Shadow &rarr; canary &rarr; full; API + container</td><td class="pb-gatecell">Shadow results match expectations; rollback path exists.</td></tr>
+              <tr><td class="pb-stage">Operate</td><td>Monitors registered at deploy; drift + cost + latency</td><td class="pb-gatecell">Every alert has a defined response &mdash; retrain, recalibrate, or rollback.</td></tr>
+              <tr><td class="pb-stage">Govern</td><td>Audit trail, evidence log, human oversight</td><td class="pb-gatecell">A reviewer can reconstruct <em>why</em> any output happened.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="pb-section" id="s3">
+        <div class="pb-h"><span class="pb-num">03</span><h2>The evaluation ladder &mdash; promotion, not a single score</h2></div>
+        <p class="pb-intro">&ldquo;Is the model good?&rdquo; is the wrong question. &ldquo;Is it good enough to advance to the next level of exposure?&rdquo; is the right one.</p>
+        <ol class="pb-steps">
+          <li><strong>Offline.</strong> Versioned, representative test set with <strong>disaggregated subgroup metrics</strong> &mdash; subgroup failure blocks promotion even if the aggregate passes.</li>
+          <li><strong>Shadow.</strong> Score live traffic without acting; compare to the incumbent and to realized outcomes. Catches train-serve skew and distribution shift offline eval can't.</li>
+          <li><strong>Canary / A&ndash;B.</strong> A pre-registered success metric <em>and</em> a guardrail metric &mdash; measure the lift, watch for the thing that could break.</li>
+        </ol>
+        <p>For GenAI / RAG the ladder is identical; the metrics change:</p>
+        <div class="pb-chips">
+          <span class="pb-chip"><b>Retrieval</b> recall@k / precision@k</span>
+          <span class="pb-chip"><b>Grounding</b> claims supported by context</span>
+          <span class="pb-chip"><b>Answer quality</b> human / LLM-as-judge</span>
+          <span class="pb-chip"><b>Abstention</b> can it say &ldquo;not enough to answer&rdquo;</span>
+        </div>
+      </section>
+
+      <section class="pb-section" id="s4">
+        <div class="pb-h"><span class="pb-num">04</span><h2>Decision frameworks &mdash; when to reach for what</h2></div>
+        <p><strong>Classical vs LLM.</strong> Structured prediction, ranking, anomaly detection &rarr; classical: more accurate, cheaper, <code>SHAP</code>-explainable, deterministic and auditable. Unstructured retrieval, natural-language interface, document grounding &rarr; LLM/RAG. Mature systems are <strong>hybrid</strong>; the skill is knowing which layer owns which job. You cannot put a stochastic text generator in front of an auditor asking &ldquo;why was this scored high.&rdquo;</p>
+        <p><strong>Build vs buy the model.</strong> The model layer is commoditizing fastest &mdash; stay model-agnostic and invest in the platform underneath. Own the governance and evaluation; rent the frontier model.</p>
+        <p><strong>Substrate choice.</strong> Follow data gravity and total cost of ownership, not tool preference. Document the decision as a reusable pattern so the next engagement doesn't relitigate it.</p>
+        <p><strong>RAG design.</strong> Chunk with overlap and per-chunk metadata for filtering &rarr; embed &rarr; vector store &rarr; semantic retrieval &rarr; <strong>re-rank</strong> (raw similarity surfaces plausible-but-wrong) &rarr; generate strictly from context with per-claim citation &rarr; abstain when retrieval is empty.</p>
+      </section>
+
+      <section class="pb-section" id="s5">
+        <div class="pb-h"><span class="pb-num">05</span><h2>Responsible AI &amp; model risk &mdash; map, don't reinvent</h2></div>
+        <p class="pb-intro">Three frameworks answer different questions; use them together.</p>
+        <ul class="pb-list">
+          <li><strong>SR 11-7</strong> (model risk management): effective challenge via validation <em>independent of development</em>, conceptual soundness, ongoing monitoring, outcomes analysis, backed by a model inventory and documentation.</li>
+          <li><strong>NIST AI RMF</strong>: the operating structure &mdash; <code>Govern</code>, <code>Map</code>, <code>Measure</code>, <code>Manage</code>.</li>
+          <li><strong>EU AI Act</strong>: risk-tiered obligations &mdash; classify each system, then meet the high-risk duties: risk management, data governance, technical documentation, logging &amp; traceability, human oversight, accuracy &amp; robustness.</li>
+        </ul>
+        <div class="pb-note">
+          <span class="pb-tagline">Architect move</span>
+          <p>Build these into the reference architecture &mdash; inventory, validation gate, evidence logs, human-oversight mechanism present by default &mdash; so each engagement <em>inherits</em> compliance instead of reinventing it.</p>
+        </div>
+        <div class="pb-proven">
+          <span class="pb-tagline">Proven in</span>
+          <p>Independent-QC statistical validation, where a second analyst reproduces key results by different code &mdash; the operational form of SR 11-7 &ldquo;effective challenge&rdquo; &mdash; and a governance layer that writes a self-contained evidence record for every automated decision, including how stale the underlying data was at decision time.</p>
+        </div>
+      </section>
+
+      <section class="pb-section" id="s6">
+        <div class="pb-h"><span class="pb-num">06</span><h2>Human-in-the-loop patterns</h2></div>
+        <p class="pb-intro">The AI supports an accountable human decision; it is never the decision.</p>
+        <ul class="pb-list">
+          <li><strong>Review</strong> &mdash; surface outputs <em>with</em> their evidence; the reviewer sees what the model saw.</li>
+          <li><strong>Escalate</strong> &mdash; route by confidence &times; risk; senior human attention goes to hard, high-impact cases, not uniformly.</li>
+          <li><strong>Override</strong> &mdash; the human can always overturn, and the override is captured as labeled feedback.</li>
+          <li><strong>Feedback</strong> &mdash; overrides and corrections flow back into the eval set and retraining.</li>
+        </ul>
+        <div class="pb-proven">
+          <span class="pb-tagline">Proven in</span>
+          <p>An agent platform where state-changing actions pause for explicit human approval while read-only actions run freely &mdash; the permission boundary <em>is</em> the human-in-the-loop control.</p>
+        </div>
+      </section>
+
+      <section class="pb-section" id="s7">
+        <div class="pb-h"><span class="pb-num">07</span><h2>Observability &amp; operations</h2></div>
+        <ul class="pb-list">
+          <li><strong>Data drift</strong> &mdash; input distribution vs training (population-stability-style). The earliest warning, because inputs shift before performance visibly degrades.</li>
+          <li><strong>Concept drift</strong> &mdash; rolling performance on realized outcomes; the input can look stable while the relationship underneath changes.</li>
+          <li><strong>Operational</strong> &mdash; cost, latency, error; for LLM systems add retrieval quality and abstention rate over time.</li>
+        </ul>
+        <div class="pb-note">
+          <span class="pb-tagline">Rule</span>
+          <p>An alert with no defined response is noise. The monitor and the runbook ship together, registered at deploy and tied to the registry entry.</p>
+        </div>
+      </section>
+
+      <section class="pb-section" id="s8">
+        <div class="pb-h"><span class="pb-num">08</span><h2>Anti-patterns &mdash; the failure modes I design against</h2></div>
+        <ul class="pb-anti">
+          <li><strong>Notebook-to-prod.</strong> A model with no tests, container, API, or CI/CD is a prototype, not a system.</li>
+          <li><strong>Aggregate-metric blindness.</strong> A strong headline number hiding subgroup failure.</li>
+          <li><strong>Explanation-as-validation.</strong> <code>SHAP</code> tells you <em>what</em> the model uses, not whether it <em>should</em> &mdash; use it to find leakage and proxies, not to certify fairness.</li>
+          <li><strong>Leakage.</strong> A feature available at training but not at prediction time; audit top features that look &ldquo;too good.&rdquo;</li>
+          <li><strong>Silent partial failure.</strong> A pipeline that half-runs and ships wrong numbers is worse than one that crashes loudly.</li>
+          <li><strong>Governance as afterthought.</strong> Traceability retrofitted after a regulator asks is the most expensive way to build it.</li>
+        </ul>
+      </section>
+
+      <section class="pb-section" id="s9">
+        <div class="pb-h"><span class="pb-num">09</span><h2>Pre-flight checklists</h2></div>
+        <div class="pb-checks">
+          <div class="pb-check">
+            <h4>Before modeling</h4>
+            <ul>
+              <li>Estimand written</li>
+              <li>Decision &amp; consumer identified</li>
+              <li>Data-quality gates defined</li>
+              <li>Representative test set versioned (subgroups + edge cases)</li>
+            </ul>
+          </div>
+          <div class="pb-check">
+            <h4>Before deploy</h4>
+            <ul>
+              <li>Registry entry + validation status</li>
+              <li>Evaluation ladder passed</li>
+              <li>Shadow results reviewed</li>
+              <li>Rollback path defined</li>
+              <li>Monitors + runbooks registered</li>
+            </ul>
+          </div>
+          <div class="pb-check">
+            <h4>Before handoff</h4>
+            <ul>
+              <li>Confidence, limits, failure modes documented</li>
+              <li>Evidence log reconstructable</li>
+              <li>Human-oversight mechanism live</li>
+              <li>Policy in reviewable config</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pb-foot">
+      <p>Author's note &mdash; this playbook reflects how I build and reason about AI
+        systems. The patterns are grounded in systems I have shipped; the frameworks
+        (SR 11-7, NIST AI RMF, EU AI Act) I apply from regulated modeling practice. It
+        is a living document &mdash; every engagement sharpens it.</p>
+    </footer>
+  </div>
+</div>
+<button class="pb-themebtn" id="themeBtn" type="button" aria-label="Toggle color theme">Theme</button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    try {
+      var saved = localStorage.getItem('pb-theme');
+      if (saved) root.setAttribute('data-theme', saved);
+    } catch (e) {}
+    var btn = document.getElementById('themeBtn');
+    btn.addEventListener('click', function () {
+      var cur = root.getAttribute('data-theme');
+      if (!cur) {
+        cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      var next = cur === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('pb-theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
