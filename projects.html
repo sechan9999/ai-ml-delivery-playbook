@@ -129,7 +129,7 @@
   <div class="wrap">
     <header class="hero">
       <span class="eyebrow">Shipped at Hackathons</span>
-      <h1><span class="lang-en">Five things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 다섯 가지 &mdash; 쉬운 말로.</span></h1>
+      <h1><span class="lang-en">Six things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 여섯 가지 &mdash; 쉬운 말로.</span></h1>
       <p class="lede"><span class="lang-en">Real projects, taken from idea to a working demo. No jargon &mdash; just what each one does, why it matters, and where to try it.</span><span class="lang-ko">아이디어에서 작동하는 데모까지 실제로 만든 프로젝트들. 전문 용어 없이, 각각 무엇을 하고 왜 중요한지, 그리고 어디서 볼 수 있는지.</span></p>
 
       <div class="langtabs" role="tablist" aria-label="Language">
@@ -280,10 +280,38 @@
           <div class="chips"><span class="chip">Python</span><span class="chip">Data viz</span><span class="chip">Risk analysis</span><span class="chip">Finance</span></div>
         </div>
       </article>
+
+      <!-- 6 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">06 &middot; Healthcare AI</span><span class="c-word">Turn payer policy changes into a ranked action list</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">06</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Payer &amp; Clinical Intelligence Agents</span><span class="lang-ko">지불자&middot;임상 인텔리전스 에이전트</span></div>
+              <div class="p-tag"><span class="lang-en">Two governed agents that read payer policy changes and rank what to act on &mdash; with a human deciding.</span><span class="lang-ko">지불자 정책 변경을 읽고 무엇부터 처리할지 순위를 매기는 두 개의 통제된 에이전트 &mdash; 판단은 사람이.</span></div>
+            </div>
+          </div>
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">Insurance (payer) policies change constantly, and a single change quietly affects thousands of claims. By the time a team notices, denials and disputes are already piling up &mdash; and no one can see exactly <em>what</em> changed or what it costs.</span><span class="lang-ko">보험사(지불자) 정책은 끊임없이 바뀌고, 변경 하나가 수천 건의 청구에 조용히 영향을 미칩니다. 팀이 알아챌 때쯤이면 이미 거절과 분쟁이 쌓이는데 &mdash; 정확히 <em>무엇이</em> 바뀌었고 얼마의 비용이 걸렸는지 아무도 못 봅니다.</span></p>
+          </div>
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">The <strong>Payer Intelligence</strong> agent diffs each new policy against the old one to surface <em>what changed</em>, answers questions grounded in the actual text with citations (and says &ldquo;not covered&rdquo; rather than guessing), and ranks the dollar impact on real claims. The <strong>Clinical &amp; Growth</strong> agent identifies patient cohorts in member-months and flags quality and service-line opportunities. Every consequential action waits in a human-approval queue; every read is logged with its evidence.</span><span class="lang-ko"><strong>지불자 인텔리전스</strong> 에이전트는 새 정책을 이전 버전과 비교해 <em>무엇이 바뀌었는지</em> 짚고, 실제 조문에 근거해 출처와 함께 답하며(모르면 지어내지 않고 &lsquo;해당 없음&rsquo;이라 말합니다), 실제 청구에 미치는 금액 영향을 순위로 보여줍니다. <strong>임상&middot;성장</strong> 에이전트는 환자 코호트를 member-months로 식별하고 품질&middot;서비스라인 기회를 표시합니다. 모든 중대한 조치는 사람 승인 큐에서 대기하고, 모든 조회는 근거와 함께 기록됩니다.</span></p>
+          </div>
+          <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
+            <p><span class="lang-en">In a regulated payer setting you must prove what the AI concluded and why. Citations, abstention, and human approval make this <strong>auditable, not autonomous</strong> &mdash; the same shape as a production payer-intelligence platform.</span><span class="lang-ko">규제받는 지불자 환경에서는 AI가 무엇을 왜 결론 내렸는지 증명할 수 있어야 합니다. 출처&middot;유보&middot;사람 승인이 이걸 <strong>자율이 아니라 감사 가능</strong>하게 만듭니다 &mdash; 실제 지불자 인텔리전스 플랫폼과 같은 형태입니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://payer-clinical-agents.streamlit.app/" target="_blank" rel="noopener"><span class="lang-en">Live demo &#8599;</span><span class="lang-ko">라이브 데모 &#8599;</span></a>
+            <a class="p-btn ghost" href="https://github.com/sechan9999/payer-clinical-agents" target="_blank" rel="noopener">GitHub &#8599;</a>
+          </div>
+          <div class="chips"><span class="chip">RAG + citations</span><span class="chip">Policy diff</span><span class="chip">Human-approved</span><span class="chip">Healthcare</span></div>
+        </div>
+      </article>
     </main>
 
     <footer>
-      <p><span class="lang-en">A common thread runs through all five: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">다섯 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
+      <p><span class="lang-en">A common thread runs through all six: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">여섯 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
       <p><a href="./index.html"><span class="lang-en">&larr; Read the AI/ML Delivery Playbook</span><span class="lang-ko">&larr; AI/ML 딜리버리 플레이북 보기</span></a> &nbsp;&middot;&nbsp; <a href="https://devpost.com/hkchun18" target="_blank" rel="noopener">All projects on Devpost &#8599;</a></p>
     </footer>
   </div>
