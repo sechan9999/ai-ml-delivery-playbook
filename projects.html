@@ -129,7 +129,7 @@
   <div class="wrap">
     <header class="hero">
       <span class="eyebrow">Shipped at Hackathons</span>
-      <h1><span class="lang-en">Six things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 여섯 가지 &mdash; 쉬운 말로.</span></h1>
+      <h1><span class="lang-en">Seven things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 일곱 가지 &mdash; 쉬운 말로.</span></h1>
       <p class="lede"><span class="lang-en">Real projects, taken from idea to a working demo. No jargon &mdash; just what each one does, why it matters, and where to try it.</span><span class="lang-ko">아이디어에서 작동하는 데모까지 실제로 만든 프로젝트들. 전문 용어 없이, 각각 무엇을 하고 왜 중요한지, 그리고 어디서 볼 수 있는지.</span></p>
 
       <div class="langtabs" role="tablist" aria-label="Language">
@@ -308,10 +308,38 @@
           <div class="chips"><span class="chip">RAG + citations</span><span class="chip">Policy diff</span><span class="chip">LangChain + LLM (optional)</span><span class="chip">Human-approved</span><span class="chip">Healthcare</span></div>
         </div>
       </article>
+
+      <!-- 7 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">07 &middot; Data science</span><span class="c-word">A model you can argue with, not just read a score from</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">07</div>
+            <div>
+              <div class="p-name"><span class="lang-en">California Housing Atlas</span><span class="lang-ko">캘리포니아 주택가격 아틀라스</span></div>
+              <div class="p-tag"><span class="lang-en">A textbook machine-learning dataset, turned into something you can actually interrogate.</span><span class="lang-ko">머신러닝 교과서 데이터셋을, 직접 캐물을 수 있는 도구로.</span></div>
+            </div>
+          </div>
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">Model results usually arrive as one number &mdash; &ldquo;error: $50,462&rdquo; &mdash; which tells you nothing about <em>where</em> the model is wrong, or whether to trust it for the decision in front of you. Meanwhile the dataset's own defects stay buried in a notebook cell nobody reads.</span><span class="lang-ko">모델 결과는 보통 숫자 하나로 옵니다 &mdash; &lsquo;오차 $50,462&rsquo;. 이 숫자는 모델이 <em>어디서</em> 틀리는지, 지금 내리려는 판단에 믿고 써도 되는지 아무것도 알려주지 않습니다. 그러는 사이 데이터 자체의 결함은 아무도 읽지 않는 노트북 셀에 묻힙니다.</span></p>
+          </div>
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">All 20,640 census districts sit on a map you can filter by income, price, and age. Any correlation can be clicked open into the scatter plot behind it. A 24-tree random forest runs <strong>inside the browser</strong>, so an estimate appears as you move the sliders &mdash; and it is always shown next to the actual values of comparable real districts, never on its own. Three models are benchmarked side by side, including a decision tree with $0 training error and $73k held-out error: overfitting you can see rather than be told about.</span><span class="lang-ko">인구조사 구역 20,640개 전부가 지도 위에 있고, 소득&middot;가격&middot;연식으로 걸러볼 수 있습니다. 상관계수는 아무거나 눌러 그 뒤의 산점도를 펼칠 수 있습니다. 24그루 랜덤포레스트가 <strong>브라우저 안에서</strong> 돌아 슬라이더를 움직이는 즉시 추정값이 나오고, 그 값은 항상 비슷한 조건의 실제 구역들 옆에 나란히 놓입니다 &mdash; 혼자 덩그러니 있지 않습니다. 모델 세 개를 나란히 비교하는데, 그중 결정트리는 학습 오차 $0에 실전 오차 $73k입니다: 과적합을 설명으로 듣는 게 아니라 눈으로 봅니다.</span></p>
+          </div>
+          <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
+            <p><span class="lang-en">The uncomfortable parts are the point. Prices in this 1990 census were truncated at $500,001, so any model trained on it under-predicts expensive housing &mdash; the page says so up front, flags estimates that drift toward that ceiling, and shows the damage in the error distribution. A model that admits where it fails is worth more than one that only reports its score.</span><span class="lang-ko">불편한 부분이 핵심입니다. 1990년 인구조사의 집값은 $500,001에서 잘려 있어서, 이 데이터로 학습한 모델은 비싼 주택을 반드시 과소예측합니다 &mdash; 페이지는 이 사실을 먼저 밝히고, 그 천장에 가까워지는 추정값에 경고를 붙이고, 오차 분포에서 그 피해를 보여줍니다. 어디서 틀리는지 인정하는 모델이 점수만 보고하는 모델보다 쓸모 있습니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://sechan9999.github.io/california-housing-atlas/" target="_blank" rel="noopener"><span class="lang-en">Live page &#8599;</span><span class="lang-ko">라이브 페이지 &#8599;</span></a>
+            <a class="p-btn ghost" href="https://github.com/sechan9999/california-housing-atlas" target="_blank" rel="noopener">GitHub &#8599;</a>
+          </div>
+          <div class="chips"><span class="chip">scikit-learn</span><span class="chip">Random forest</span><span class="chip">In-browser inference</span><span class="chip">Data viz</span><span class="chip">Model honesty</span></div>
+        </div>
+      </article>
     </main>
 
     <footer>
-      <p><span class="lang-en">A common thread runs through all six: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">여섯 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
+      <p><span class="lang-en">A common thread runs through all seven: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">일곱 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
       <p><a href="./index.html"><span class="lang-en">&larr; Read the AI/ML Delivery Playbook</span><span class="lang-ko">&larr; AI/ML 딜리버리 플레이북 보기</span></a> &nbsp;&middot;&nbsp; <a href="https://devpost.com/hkchun18" target="_blank" rel="noopener">All projects on Devpost &#8599;</a></p>
     </footer>
   </div>
