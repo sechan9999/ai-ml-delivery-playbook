@@ -129,7 +129,7 @@
   <div class="wrap">
     <header class="hero">
       <span class="eyebrow">Shipped at Hackathons</span>
-      <h1><span class="lang-en">Seven things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 일곱 가지 &mdash; 쉬운 말로.</span></h1>
+      <h1><span class="lang-en">Eight things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 여덟 가지 &mdash; 쉬운 말로.</span></h1>
       <p class="lede"><span class="lang-en">Real projects, taken from idea to a working demo. No jargon &mdash; just what each one does, why it matters, and where to try it.</span><span class="lang-ko">아이디어에서 작동하는 데모까지 실제로 만든 프로젝트들. 전문 용어 없이, 각각 무엇을 하고 왜 중요한지, 그리고 어디서 볼 수 있는지.</span></p>
 
       <div class="langtabs" role="tablist" aria-label="Language">
@@ -336,10 +336,38 @@
           <div class="chips"><span class="chip">scikit-learn</span><span class="chip">Random forest</span><span class="chip">In-browser inference</span><span class="chip">Data viz</span><span class="chip">Model honesty</span></div>
         </div>
       </article>
+
+      <!-- 8 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">08 &middot; Market analysis</span><span class="c-word">One record high, hiding two markets moving opposite ways</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">08</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Georgia Housing Divide</span><span class="lang-ko">조지아 주택시장의 분열</span></div>
+              <div class="p-tag"><span class="lang-en">A statewide index at an all-time high, while 60 of its 157 counties are already falling.</span><span class="lang-ko">주 전체 지수는 사상 최고치인데, 157개 카운티 중 60개는 이미 하락 중.</span></div>
+            </div>
+          </div>
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">Housing gets reported as one number per state or metro. But an average can sit at a record high while a large share of the places inside it are already falling &mdash; and if you only ever see the average, you cannot tell which of those two things is happening to you.</span><span class="lang-ko">주택시장은 보통 지역당 숫자 하나로 보도됩니다. 그런데 평균은 그 안의 상당수가 이미 하락 중이어도 사상 최고치일 수 있습니다 &mdash; 평균만 보면, 내가 그 둘 중 어느 쪽에 있는지 알 수 없습니다.</span></p>
+          </div>
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">It maps all 157 indexed Georgia counties, shaded by gain, by how far each has fallen from its <em>own</em> peak, by price level, or by the month it topped out. Every county's path is drawn from December 2019 so the split is visible rather than asserted, and a peak-timing chart shows this is genuinely two distributions: 45 counties peaked in 2024 and drifted down, 86 set their high this year. A conditions panel compares June 2019 with June 2026 &mdash; same month, so seasonality is held constant.</span><span class="lang-ko">지수가 산출되는 조지아 157개 카운티 전체를 지도에 올리고, 상승률&middot;<em>자기</em> 고점 대비 낙폭&middot;가격대&middot;고점 시점 중 원하는 기준으로 색을 입힙니다. 모든 카운티의 경로를 2019년 12월부터 그려 분열을 주장이 아니라 눈으로 보게 하고, 고점 시점 분포는 이것이 실제로 두 개의 분포임을 보여줍니다: 45개는 2024년에 정점을 찍고 흘러내렸고, 86개는 올해 최고치를 세웠습니다. 시장 여건은 6월 대 6월로 비교해 계절성을 고정했습니다.</span></p>
+          </div>
+          <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
+            <p><span class="lang-en">The counties falling fastest are the expensive, urban ones. Atlanta's five core counties gained the <strong>least</strong> of any group (+48.4%) and every one of them is past its peak, while rural counties nearly doubled and are still at their highs. Averages hide inversions like that &mdash; and decisions get made on averages.</span><span class="lang-ko">가장 빨리 떨어지는 곳이 가장 비싸고 도시적인 카운티들입니다. 애틀랜타 코어 5개 카운티는 모든 그룹 중 <strong>가장 적게</strong> 올랐고(+48.4%) 5개 전부가 고점을 지났습니다. 반면 시골 카운티들은 거의 두 배가 되고도 여전히 최고치입니다. 평균은 이런 역전을 가리는데 &mdash; 의사결정은 평균으로 이뤄집니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://sechan9999.github.io/georgia-housing-divide/" target="_blank" rel="noopener"><span class="lang-en">Live page &#8599;</span><span class="lang-ko">라이브 페이지 &#8599;</span></a>
+            <a class="p-btn ghost" href="https://github.com/sechan9999/georgia-housing-divide" target="_blank" rel="noopener">GitHub &#8599;</a>
+          </div>
+          <div class="chips"><span class="chip">Zillow research data</span><span class="chip">Choropleth</span><span class="chip">Time series</span><span class="chip">Public data</span><span class="chip">Market analysis</span></div>
+        </div>
+      </article>
     </main>
 
     <footer>
-      <p><span class="lang-en">A common thread runs through all seven: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">일곱 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
+      <p><span class="lang-en">A common thread runs through all eight: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">여덟 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
       <p><a href="./index.html"><span class="lang-en">&larr; Read the AI/ML Delivery Playbook</span><span class="lang-ko">&larr; AI/ML 딜리버리 플레이북 보기</span></a> &nbsp;&middot;&nbsp; <a href="https://devpost.com/hkchun18" target="_blank" rel="noopener">All projects on Devpost &#8599;</a></p>
     </footer>
   </div>
