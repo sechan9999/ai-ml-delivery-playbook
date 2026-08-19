@@ -129,7 +129,7 @@
   <div class="wrap">
     <header class="hero">
       <span class="eyebrow">Shipped at Hackathons</span>
-      <h1><span class="lang-en">Eight things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 여덟 가지 &mdash; 쉬운 말로.</span></h1>
+      <h1><span class="lang-en">Nine things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 아홉 가지 &mdash; 쉬운 말로.</span></h1>
       <p class="lede"><span class="lang-en">Real projects, taken from idea to a working demo. No jargon &mdash; just what each one does, why it matters, and where to try it.</span><span class="lang-ko">아이디어에서 작동하는 데모까지 실제로 만든 프로젝트들. 전문 용어 없이, 각각 무엇을 하고 왜 중요한지, 그리고 어디서 볼 수 있는지.</span></p>
 
       <div class="langtabs" role="tablist" aria-label="Language">
@@ -364,10 +364,37 @@
           <div class="chips"><span class="chip">Zillow research data</span><span class="chip">Choropleth</span><span class="chip">Time series</span><span class="chip">Public data</span><span class="chip">Market analysis</span></div>
         </div>
       </article>
+
+      <!-- 9 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">09 &middot; Healthcare AI</span><span class="c-word">Five agents for a hospital, and not one of them decides anything</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">09</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Infection Prevention AI</span><span class="lang-ko">병원 감염관리 AI</span></div>
+              <div class="p-tag"><span class="lang-en">An infection prevention platform for the hospitals that have half a person to run one.</span><span class="lang-ko">감염관리를 0.5명으로 굴리는 병원을 위한 감염관리 플랫폼.</span></div>
+            </div>
+          </div>
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">A community hospital runs infection prevention on half a person to two people, and finds cases by reading charts by hand. The bottleneck is not clinical judgment &mdash; it is the hours spent locating the cases that deserve judgment. The same one or two people also owe the CDC their surveillance data, the pharmacy an antibiotic stewardship program, and an accreditor a survey-ready evidence trail.</span><span class="lang-ko">지역 병원은 감염관리를 0.5명에서 2명으로 운영하고, 차트를 손으로 읽어 사례를 찾습니다. 병목은 임상 판단이 아니라, 판단할 가치가 있는 사례를 찾는 데 들어가는 시간입니다. 그 한두 사람이 동시에 CDC 감시자료 제출, 항생제 스튜어드십 프로그램, 인증 실사에 낼 근거까지 책임집니다.</span></p>
+          </div>
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">One skill defines the reasoning &mdash; evidence first, human approval, an audit record for every action &mdash; and five agents inherit it. <strong>Surveillance</strong> raises candidate infections from lab, device, and admission data. <strong>Outbreak</strong> turns a cluster into a twelve-step investigation with an epidemic curve and hypotheses that must carry their own contradicting evidence. <strong>Stewardship</strong> builds a ranked daily worklist from fourteen flag types. <strong>Compliance</strong> separates a practice gap from a documentation gap, because the fixes are opposite. The fifth agent deploys the other four: it profiles a specific hospital's systems, feeds, and staffing, then computes which rules can honestly run there. It is an architecture written to be deployed &mdash; the agent contracts, not a running installation.</span><span class="lang-ko">스킬 하나가 사고방식을 정의하고 &mdash; 근거 우선, 사람 승인, 모든 행동에 감사 기록 &mdash; 다섯 개의 에이전트가 그것을 물려받습니다. <strong>감시</strong> 에이전트는 검사&middot;장치&middot;입원 데이터에서 감염 후보를 올립니다. <strong>발생</strong> 에이전트는 집단발생을 12단계 역학조사로 바꾸고, 유행곡선과 함께 각 가설이 스스로를 반박하는 근거까지 달고 다니게 합니다. <strong>스튜어드십</strong> 에이전트는 14종의 플래그로 우선순위가 매겨진 일일 작업목록을 만듭니다. <strong>규정준수</strong> 에이전트는 실무의 결함과 기록의 결함을 구분합니다 &mdash; 고치는 방법이 정반대이기 때문입니다. 다섯 번째 에이전트는 나머지 넷을 배치합니다: 특정 병원의 시스템&middot;데이터 피드&middot;인력을 진단하고, 그곳에서 정직하게 돌아갈 수 있는 규칙이 무엇인지 계산합니다. 실행 중인 설치본이 아니라, 배치를 전제로 쓴 아키텍처입니다.</span></p>
+          </div>
+          <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
+            <p><span class="lang-en">The design work is in what each agent <em>refuses</em> to do. Surveillance will not confirm a reportable event. Outbreak will not name a staff member or declare an outbreak. Stewardship will not phrase a flag as an instruction. Compliance has no individual-level output mode at all. And capability is derived from the data, never assumed: a rule whose required feed is missing is <strong>disabled and shown as disabled</strong>, so a hospital that can support 9 of 34 rules gets 9 rules and an honest list of the 25 it does not have. In healthcare, the tool that admits its limits is the only kind anyone should install.</span><span class="lang-ko">설계의 본체는 각 에이전트가 <em>하지 않겠다고</em> 정한 것들입니다. 감시 에이전트는 보고 대상 사례를 확정하지 않습니다. 발생 에이전트는 직원 이름을 적지 않고 유행을 선언하지도 않습니다. 스튜어드십 에이전트는 플래그를 지시문으로 쓰지 않습니다. 규정준수 에이전트는 개인 단위 출력 자체가 없습니다. 그리고 성능은 데이터에서 도출될 뿐 가정되지 않습니다: 필요한 데이터가 없는 규칙은 <strong>비활성화되고, 비활성화되었다고 표시됩니다</strong>. 그래서 34개 중 9개만 지원 가능한 병원은 9개와, 갖지 못한 25개의 정직한 목록을 함께 받습니다. 의료에서는 자기 한계를 인정하는 도구만 설치할 가치가 있습니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://github.com/sechan9999/infection-prevention-ai" target="_blank" rel="noopener">GitHub &#8599;</a>
+          </div>
+          <div class="chips"><span class="chip">Agent architecture</span><span class="chip">Skill + agents</span><span class="chip">HAI surveillance</span><span class="chip">Human-in-the-loop</span><span class="chip">Healthcare</span></div>
+        </div>
+      </article>
     </main>
 
     <footer>
-      <p><span class="lang-en">A common thread runs through all eight: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">여덟 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
+      <p><span class="lang-en">A common thread runs through all nine: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">아홉 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
       <p><a href="./index.html"><span class="lang-en">&larr; Read the AI/ML Delivery Playbook</span><span class="lang-ko">&larr; AI/ML 딜리버리 플레이북 보기</span></a> &nbsp;&middot;&nbsp; <a href="https://devpost.com/hkchun18" target="_blank" rel="noopener">All projects on Devpost &#8599;</a></p>
     </footer>
   </div>
