@@ -421,10 +421,40 @@
           <div class="chips"><span class="chip">Gemini + ADK</span><span class="chip">Event-driven</span><span class="chip">Access control</span><span class="chip">Human-approved</span><span class="chip">Cloud Run</span></div>
         </div>
       </article>
+      <!-- 11 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">11 &middot; Governed Retrieval</span><span class="c-word">Same question, two correct answers, and the date decides which</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">11</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Policy Copilot</span><span class="lang-ko">정책 코파일럿</span></div>
+              <div class="p-tag"><span class="lang-en">Governed question-answering over versioned policy, where which version governs is arithmetic rather than something you ask a model.</span><span class="lang-ko">버전이 있는 정책에 대한 통제된 질의응답 &mdash; 어느 버전이 지배하는지는 모델에게 묻는 것이 아니라 계산하는 것입니다.</span></div>
+            </div>
+          </div>
+
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">Operations teams answer questions by finding the clause that governs. But policy has versions. The rule that applied to a March transaction may have been replaced in May, and both texts still exist, both are retrievable, and only one of them is the answer. Ask a retrieval system and it hands back today&rsquo;s clause &mdash; or worse, both, with nothing marking which is which. The usual response is that the model will reconcile them. It won&rsquo;t. It will guess, fluently, with a citation attached. And access is not uniform: some clauses are restricted, so the same correct answer becomes a disclosure when the wrong person receives it.</span><span class="lang-ko">운영팀은 지배하는 조항을 찾아 질문에 답합니다. 그런데 정책에는 버전이 있습니다. 3월 거래에 적용된 규칙이 5월에 교체됐다면 두 텍스트가 모두 존재하고 모두 검색되지만, 정답은 하나뿐입니다. 검색 시스템에 물으면 오늘의 조항을 돌려주거나, 더 나쁘게는 둘 다 돌려줍니다 &mdash; 어느 쪽이 어느 쪽인지 표시 없이. 흔한 대답은 &ldquo;모델이 조정할 것&rdquo;입니다. 조정하지 않습니다. 유창하게, 인용까지 붙여서 추측합니다. 게다가 접근 권한은 균일하지 않습니다. 같은 정답도 받는 사람이 다르면 정보 유출이 됩니다.</span></p>
+          </div>
+
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">Retrieval takes the date the question is <em>about</em>, not the date it is asked. Ask about a March representment and you get the 30-day clause that governed then, with a note that a later version took over on 1 May; ask about June and you get the 45-day clause and what it replaced. Supersession is settled before the model sees anything, because whether a clause governs is arithmetic over effective dates. The predicate order carries the rest: <strong>entitlement and effective date run first, because they are security</strong> &mdash; a clause the caller cannot read is gone before ranking ever happens. Relevance runs after, on already-permitted material, so it can only remove an answer and never add one. Entitlements carry an epoch, so an index built under permissions that have since been revoked refuses to serve rather than quietly answering.</span><span class="lang-ko">검색은 질문이 <em>다루는</em> 날짜를 기준으로 합니다, 질문한 날짜가 아니라. 3월 대표권을 물으면 그때 지배하던 30일 조항과 &ldquo;5월 1일부터 이후 버전이 적용된다&rdquo;는 표시를 함께 받고, 6월을 물으면 45일 조항과 그것이 무엇을 대체했는지를 받습니다. 승계는 모델이 무언가를 보기 전에 해소됩니다 &mdash; 어느 조항이 지배하는지는 유효기간에 대한 산술이기 때문입니다. 나머지는 술어의 순서가 담당합니다. <strong>권한과 유효기간이 먼저 실행됩니다, 그것이 보안이기 때문에</strong> &mdash; 호출자가 읽을 수 없는 조항은 순위 계산이 시작되기도 전에 사라집니다. 관련성은 그다음, 이미 허용된 자료에만 적용되므로 답을 없앨 수는 있어도 늘릴 수는 없습니다. 권한에는 epoch이 붙어 있어서, 이미 취소된 권한으로 만들어진 인덱스는 조용히 답하는 대신 서빙을 거부합니다.</span></p>
+          </div>
+
+          <div class="p-block"><span class="p-label">Why it matters</span>
+            <p><span class="lang-en">The interesting part was a failure. The obvious way to make a retriever decline is a similarity floor &mdash; and measured on this corpus, <em>&ldquo;What is the capital of France?&rdquo;</em> scored 0.408, higher than two of the three genuine policy questions. Bag-of-words similarity is dominated by the words two sentences happen to share &mdash; <em>what, is, the, of</em> &mdash; so it measures sentence shape rather than aboutness, and no threshold separates the two sets. That non-separability is now itself a test: if a better embedder ever makes them separable, the build fails and the mechanism gets revisited instead of carried forward out of habit. The gate that does work weights terms by how distinctive they are, so &ldquo;merchant&rdquo; decides nothing and &ldquo;representment&rdquo; decides everything. All 58 tests run with no API key and no network, because an access-control claim a reviewer cannot check without the author&rsquo;s credentials is a claim taken on faith.</span><span class="lang-ko">흥미로운 부분은 실패였습니다. 검색기가 거부하게 만드는 뻔한 방법은 유사도 하한인데, 이 코퍼스에서 측정해 보니 <em>&ldquo;프랑스의 수도는?&rdquo;</em>이 0.408로 진짜 정책 질문 셋 중 둘보다 높았습니다. bag-of-words 유사도는 두 문장이 우연히 공유하는 단어 &mdash; <em>what, is, the, of</em> &mdash; 에 지배되므로 문장이 무엇에 관한 것인지가 아니라 문장의 모양을 잽니다. 두 집합을 가르는 임계값은 존재하지 않습니다. 이 분리 불가능성 자체가 이제 테스트입니다: 나중에 더 나은 임베더로 분리가 가능해지면 빌드가 깨지고, 메커니즘을 관성으로 끌고 가는 대신 재검토하게 됩니다. 실제로 작동하는 게이트는 용어를 변별력에 따라 가중합니다 &mdash; &ldquo;merchant&rdquo;는 아무것도 결정하지 않고 &ldquo;representment&rdquo;가 전부를 결정합니다. 58개 테스트 전부가 API 키 없이, 네트워크 없이 실행됩니다. 리뷰어가 저자의 자격증명 없이는 검증할 수 없는 접근통제 주장은, 믿음으로 받아들여야 하는 주장이기 때문입니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://github.com/sechan9999/policy-copilot" target="_blank" rel="noopener">GitHub &#8599;</a>
+          </div>
+
+          <div class="chips"><span class="chip">As-of retrieval</span><span class="chip">Access control</span><span class="chip">Policy versioning</span><span class="chip">Abstention</span><span class="chip">Offline tests</span></div>
+        </div>
+      </article>
     </main>
 
     <footer>
-      <p><span class="lang-en">A common thread runs through all ten: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">열 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
+      <p><span class="lang-en">A common thread runs through all eleven: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">열한 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
       <p><a href="./index.html"><span class="lang-en">&larr; Read the AI/ML Delivery Playbook</span><span class="lang-ko">&larr; AI/ML 딜리버리 플레이북 보기</span></a> &nbsp;&middot;&nbsp; <a href="https://devpost.com/hkchun18" target="_blank" rel="noopener">All projects on Devpost &#8599;</a></p>
     </footer>
   </div>
