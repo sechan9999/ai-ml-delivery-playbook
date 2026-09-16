@@ -129,7 +129,7 @@
   <div class="wrap">
     <header class="hero">
       <span class="eyebrow">Shipped at Hackathons</span>
-      <h1><span class="lang-en">Fourteen things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 열네 가지 &mdash; 쉬운 말로.</span></h1>
+      <h1><span class="lang-en">Fifteen things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 열다섯 가지 &mdash; 쉬운 말로.</span></h1>
       <p class="lede"><span class="lang-en">Real projects, taken from idea to a working demo. No jargon &mdash; just what each one does, why it matters, and where to try it.</span><span class="lang-ko">아이디어에서 작동하는 데모까지 실제로 만든 프로젝트들. 전문 용어 없이, 각각 무엇을 하고 왜 중요한지, 그리고 어디서 볼 수 있는지.</span></p>
 
       <div class="langtabs" role="tablist" aria-label="Language">
@@ -543,10 +543,41 @@
           <div class="chips"><span class="chip">Claude Code skills</span><span class="chip">In-browser matching</span><span class="chip">Fact grounding</span><span class="chip">Local &amp; private</span><span class="chip">Vitest + CI</span></div>
         </div>
       </article>
+      <!-- 15 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">15 &middot; Clinical ML Evaluation</span><span class="c-word">R&sup2; of 0.99 on a random split, below zero on new patients</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">15</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Nori vs XGBoost on Clinical Data</span><span class="lang-ko">임상 데이터에서 Nori vs XGBoost</span></div>
+              <div class="p-tag"><span class="lang-en">A head-to-head of a training-free tabular foundation model and tuned XGBoost on three healthcare datasets &mdash; scored the way a hospital would deploy it, not the way a leaderboard would.</span><span class="lang-ko">학습이 필요 없는 테이블 파운데이션 모델과 튜닝한 XGBoost를 의료 데이터셋 세 개로 맞붙인 비교 &mdash; 리더보드 방식이 아니라 병원이 실제로 배포하는 방식으로 채점했습니다.</span></div>
+            </div>
+          </div>
+
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">Tabular foundation models promise to replace the tuning loop: hand the model some labelled rows and it predicts in one pass, with uncertainty included. My first quick test agreed &mdash; Nori beat XGBoost on every split. But that XGBoost was untuned, and the splits were random. Clinical models do not meet random rows in production. They meet <em>new patients</em>, and a benchmark that lets the same patient appear on both sides of the split is measuring whether the model recognises someone, not whether it understands the disease.</span><span class="lang-ko">테이블 파운데이션 모델은 튜닝 과정을 없애 주겠다고 약속합니다: 라벨이 붙은 행 몇 개를 주면 한 번에 예측하고, 불확실성까지 함께 줍니다. 처음 돌린 간단한 테스트도 그렇다고 말했습니다 &mdash; Nori가 모든 분할에서 XGBoost를 이겼습니다. 하지만 그 XGBoost는 튜닝되지 않았고, 분할은 무작위였습니다. 임상 모델은 실전에서 무작위 행을 만나지 않습니다. <em>새로운 환자</em>를 만납니다. 같은 환자가 학습과 테스트 양쪽에 들어가는 벤치마크는 모델이 질병을 이해하는지가 아니라 그 사람을 알아보는지를 재고 있는 것입니다.</span></p>
+          </div>
+
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">A reproducible notebook compares Nori, untouched, against XGBoost tuned by randomized search on the training fold only, across diabetes progression (442 patients), Parkinson&rsquo;s severity from voice recordings (5,875 recordings from 42 patients, split <strong>by patient</strong>), and CMS Medicare payments per discharge. Both models are scored on R&sup2;, error, the coverage and width of their 90% prediction intervals, and wall-clock cost. A learning curve tests the small-data claim, and a final cell reruns Parkinson&rsquo;s with a random split to measure exactly how much leakage flatters each model.</span><span class="lang-ko">재현 가능한 노트북 하나가 아무 설정도 건드리지 않은 Nori와, 학습 폴드 안에서만 랜덤 서치로 튜닝한 XGBoost를 비교합니다. 데이터는 당뇨병 진행도(환자 442명), 음성 녹음으로 추정하는 파킨슨병 중증도(환자 42명의 녹음 5,875건, <strong>환자 단위로 분할</strong>), CMS 메디케어 퇴원당 지급액입니다. 두 모델 모두 R&sup2;, 오차, 90% 예측구간의 커버리지와 폭, 실행 시간으로 채점합니다. 학습곡선으로 적은 데이터에서 강하다는 주장을 검증하고, 마지막 셀은 파킨슨 데이터를 무작위 분할로 다시 돌려 누수가 각 모델을 얼마나 부풀리는지 정확히 잽니다.</span></p>
+          </div>
+
+          <div class="p-block"><span class="p-label">Why it matters</span>
+            <p><span class="lang-en">The honest result is a split decision. On the small diabetes cohort Nori edges tuned XGBoost (R&sup2; 0.488 vs 0.475) with no tuning at all, and on Medicare they tie (0.868 vs 0.872). Where test rows resemble the context, Nori&rsquo;s intervals are the better calibrated: 91&ndash;93% coverage against XGBoost&rsquo;s 84&ndash;87%. Then comes the patient split. Neither model predicts a new patient&rsquo;s severity from voice features &mdash; both R&sup2; values are negative &mdash; but Nori fails harder (&minus;0.76 vs &minus;0.27), and its 90% intervals contain only <strong>20%</strong> of the true scores: confidently wrong, exactly where a clinician would trust it. Split by recording instead and the same models score <strong>0.993 and 0.969</strong>. Nori gains more from the leak because in-context learning can match a query to near-copies of the same patient. That gap is the finding, not the leaderboard: any evaluation of an in-context model on health data needs a patient-grouped split before anyone believes its score.</span><span class="lang-ko">정직한 결과는 판정이 갈린다는 것입니다. 작은 당뇨병 코호트에서는 Nori가 튜닝 없이 튜닝한 XGBoost를 근소하게 앞서고(R&sup2; 0.488 vs 0.475), 메디케어에서는 비깁니다(0.868 vs 0.872). 테스트 행이 컨텍스트와 비슷할 때 Nori의 예측구간이 더 잘 보정되어 있습니다: 커버리지 91&ndash;93% 대 XGBoost 84&ndash;87%. 그다음이 환자 단위 분할입니다. 두 모델 모두 음성 특징으로 새 환자의 중증도를 예측하지 못하고 &mdash; R&sup2;가 둘 다 음수 &mdash; Nori가 더 크게 실패합니다(&minus;0.76 vs &minus;0.27). Nori의 90% 구간은 실제 점수의 <strong>20%</strong>만 담습니다: 임상의가 믿을 바로 그 지점에서 자신 있게 틀립니다. 녹음 단위로 분할하면 같은 모델들이 <strong>0.993과 0.969</strong>를 기록합니다. 인컨텍스트 학습은 질의를 같은 환자의 거의 똑같은 행과 짝지을 수 있어서 Nori가 누수의 덕을 더 봅니다. 발견은 리더보드가 아니라 그 격차입니다: 의료 데이터에서 인컨텍스트 모델을 평가한다면, 누구든 점수를 믿기 전에 환자 단위 분할부터 해야 합니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://github.com/sechan9999/synthefy-nori/blob/main/examples/notebooks/nori-vs-xgboost-clinical.ipynb" target="_blank" rel="noopener">Notebook &#8599;</a>
+            <a class="p-btn" href="https://colab.research.google.com/github/sechan9999/synthefy-nori/blob/main/examples/notebooks/nori-vs-xgboost-clinical.ipynb" target="_blank" rel="noopener">Open in Colab &#8599;</a>
+          </div>
+
+          <div class="chips"><span class="chip">Tabular foundation models</span><span class="chip">XGBoost</span><span class="chip">Patient-grouped CV</span><span class="chip">Prediction intervals</span><span class="chip">Leakage audit</span></div>
+        </div>
+      </article>
     </main>
 
     <footer>
-      <p><span class="lang-en">A common thread runs through all fourteen: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">열네 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
+      <p><span class="lang-en">A common thread runs through all fifteen: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">열다섯 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
       <p><a href="./index.html"><span class="lang-en">&larr; Read the AI/ML Delivery Playbook</span><span class="lang-ko">&larr; AI/ML 딜리버리 플레이북 보기</span></a> &nbsp;&middot;&nbsp; <a href="https://devpost.com/hkchun18" target="_blank" rel="noopener">All projects on Devpost &#8599;</a></p>
     </footer>
   </div>
