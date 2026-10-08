@@ -129,7 +129,7 @@
   <div class="wrap">
     <header class="hero">
       <span class="eyebrow">Shipped at Hackathons</span>
-      <h1><span class="lang-en">Fifteen things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 열다섯 가지 &mdash; 쉬운 말로.</span></h1>
+      <h1><span class="lang-en">Eighteen things I built &mdash; in plain language.</span><span class="lang-ko">내가 만든 열여덟 가지 &mdash; 쉬운 말로.</span></h1>
       <p class="lede"><span class="lang-en">Real projects, taken from idea to a working demo. No jargon &mdash; just what each one does, why it matters, and where to try it.</span><span class="lang-ko">아이디어에서 작동하는 데모까지 실제로 만든 프로젝트들. 전문 용어 없이, 각각 무엇을 하고 왜 중요한지, 그리고 어디서 볼 수 있는지.</span></p>
 
       <div class="langtabs" role="tablist" aria-label="Language">
@@ -578,10 +578,94 @@
           <div class="chips"><span class="chip">Tabular foundation models</span><span class="chip">XGBoost</span><span class="chip">Patient-grouped CV</span><span class="chip">Prediction intervals</span><span class="chip">Leakage audit</span><span class="chip">GPU inference</span></div>
         </div>
       </article>
+
+      <!-- 16 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">16 &middot; Security</span><span class="c-word">Catches the coordinated attack that hides under every per-device threshold</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">16</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Network Traffic Anomaly Detection</span><span class="lang-ko">네트워크 트래픽 이상 탐지</span></div>
+              <div class="p-tag"><span class="lang-en">Catches the quiet, coordinated attacks that hide below every per-device alarm.</span><span class="lang-ko">기기별 임계치 밑으로 숨는 &lsquo;조용한 협동 공격&rsquo;까지 잡아냅니다.</span></div>
+            </div>
+          </div>
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">Security tools watch each machine against a fixed threshold, so a slow, coordinated attack &mdash; where every machine stays just under the limit &mdash; slips through. And normal daily and weekly traffic swings set off false alarms.</span><span class="lang-ko">보안 도구는 기기마다 고정된 기준으로 감시하기 때문에, 각 기기가 기준을 살짝 밑도는 &lsquo;느리고 협동적인 공격&rsquo;은 빠져나갑니다. 게다가 평일&middot;주말의 정상적인 트래픽 변동이 오탐을 일으킵니다.</span></p>
+          </div>
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">It learns each entity&rsquo;s normal rhythm by time-of-week and flags only genuine deviations, so routine ups and downs don&rsquo;t trigger. Then it adds a &ldquo;co-spike&rdquo; check: when many machines in the same network block tick up together, it catches the coordinated attack even though no single one crossed its own line. A classifier labels the type &mdash; normal, duplicate, retry, anomalous, DDoS &mdash; and every alert ships a structured evidence packet an AI agent can investigate.</span><span class="lang-ko">각 대상의 &lsquo;요일&middot;시간대별 정상 리듬&rsquo;을 학습해 진짜 이탈만 표시합니다 &mdash; 일상적 변동엔 울리지 않습니다. 여기에 &lsquo;동시 급증(co-spike)&rsquo; 점검을 더해, 같은 네트워크 대역의 여러 기기가 함께 올라가면 어느 하나도 자기 기준을 넘지 않았어도 협동 공격을 잡아냅니다. 분류기가 유형(정상&middot;중복&middot;재시도&middot;이상&middot;DDoS)을 붙이고, 모든 경보엔 AI 에이전트가 조사할 수 있는 구조화된 증거 묶음이 함께 나갑니다.</span></p>
+          </div>
+          <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
+            <p><span class="lang-en">The dangerous attacks are the quiet, coordinated ones. Looking across machines instead of one at a time is what catches them &mdash; and the evidence trail keeps a human in the loop.</span><span class="lang-ko">위험한 공격은 조용하고 협동적인 것들입니다. 한 대씩이 아니라 여러 대를 함께 보는 것이 이를 잡는 핵심이고, 증거 기록이 사람의 판단을 끝까지 남깁니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://traffic-anomaly-detection2.streamlit.app/" target="_blank" rel="noopener"><span class="lang-en">Live demo &#8599;</span><span class="lang-ko">라이브 데모 &#8599;</span></a>
+            <a class="p-btn" href="https://github.com/sechan9999/traffic-anomaly-detection" target="_blank" rel="noopener">GitHub &#8599;</a>
+          </div>
+          <div class="chips"><span class="chip">Anomaly detection</span><span class="chip">Behavioral baselines</span><span class="chip">Cross-entity correlation</span><span class="chip">Evidence for agents</span></div>
+        </div>
+      </article>
+
+      <!-- 17 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">17 &middot; Enterprise AI</span><span class="c-word">What is the agent structurally unable to do?</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">17</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Gemini Ops Fleet &mdash; a governed agent team</span><span class="lang-ko">Gemini Ops Fleet &mdash; 통제되는 에이전트 팀</span></div>
+              <div class="p-tag"><span class="lang-en">A team of AI agents that structurally can&rsquo;t overstep its permissions.</span><span class="lang-ko">권한을 넘어서는 게 &lsquo;구조적으로 불가능한&rsquo; AI 에이전트 팀.</span></div>
+            </div>
+          </div>
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">Companies are handing AI agents real access to their systems. But one over-eager agent can read data it shouldn&rsquo;t, or message a customer by mistake &mdash; and you often can&rsquo;t prove, afterward, what it did or why.</span><span class="lang-ko">기업들이 AI 에이전트에게 실제 시스템 접근 권한을 주고 있습니다. 그런데 한 에이전트가 봐선 안 될 데이터를 읽거나 실수로 고객에게 연락할 수 있고, 나중에 &lsquo;AI가 무엇을 왜 했는지&rsquo; 증명하기도 어렵습니다.</span></p>
+          </div>
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">A fleet of specialized back-office agents &mdash; ticket triage, knowledge capture, follow-up, reconciliation &mdash; runs on a shared event stream. Each agent&rsquo;s permissions come from the server, not from anything the AI says, so it can&rsquo;t widen its own access; data is filtered by role before the AI ever sees it; and nothing reaches a customer without a human approving it. Every action, including refused ones, is logged. Built on Google ADK and Gemini, deployed to Cloud Run.</span><span class="lang-ko">전담 백오피스 에이전트들(티켓 분류&middot;지식화&middot;팔로업&middot;정합)이 공유 이벤트 스트림 위에서 돕니다. 각 에이전트의 권한은 AI가 말하는 것이 아니라 서버가 정하므로 스스로 권한을 넓힐 수 없고, 데이터는 AI가 보기 전에 역할별로 걸러지며, 고객에게 가는 것은 사람이 승인해야만 나갑니다. 거부된 행동까지 모두 기록됩니다. Google ADK와 Gemini로 만들어 Cloud Run에 배포했습니다.</span></p>
+          </div>
+          <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
+            <p><span class="lang-en">In an enterprise the question isn&rsquo;t &ldquo;how much can the agent do&rdquo; but &ldquo;what is it structurally unable to do&rdquo; &mdash; safety enforced in code, not asked of the model.</span><span class="lang-ko">기업에서 중요한 건 &ldquo;에이전트가 얼마나 많이 하나&rdquo;가 아니라 &ldquo;구조적으로 무엇을 못 하게 되어 있나&rdquo;입니다 &mdash; 모델에게 부탁하는 안전이 아니라 코드로 강제되는 안전.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://github.com/sechan9999/gemini-ops-fleet" target="_blank" rel="noopener">GitHub &#8599;</a>
+          </div>
+          <div class="chips"><span class="chip">Multi-agent</span><span class="chip">Google ADK / Gemini</span><span class="chip">Role security</span><span class="chip">Human approval</span></div>
+        </div>
+      </article>
+
+      <!-- 18 -->
+      <article class="project">
+        <div class="p-media"><div class="p-cover"><span class="c-num">18 &middot; AI Operations</span><span class="c-word">Fix the cost spike before it hits the invoice</span></div></div>
+        <div class="p-body">
+          <div class="p-top">
+            <div class="p-num">18</div>
+            <div>
+              <div class="p-name"><span class="lang-en">Unified Ops AX &mdash; self-healing AI fleet telemetry</span><span class="lang-ko">Unified Ops AX &mdash; 스스로 고치는 AI 운영 관제</span></div>
+              <div class="p-tag"><span class="lang-en">Watches the AI fleet&rsquo;s cost and errors &mdash; and fixes them in milliseconds.</span><span class="lang-ko">AI 운영의 비용&middot;오류를 지켜보다 밀리초 안에 스스로 고칩니다.</span></div>
+            </div>
+          </div>
+          <div class="p-block"><span class="p-label">The problem</span>
+            <p><span class="lang-en">An AI system can run up a huge bill or spiral into errors faster than a human can react. By the time someone notices the cost spike, it&rsquo;s already on the invoice.</span><span class="lang-ko">AI 시스템은 사람이 반응하기도 전에 큰 비용을 쓰거나 오류로 번질 수 있습니다. 비용 급증을 알아챌 때쯤이면 이미 청구서에 찍혀 있습니다.</span></p>
+          </div>
+          <div class="p-block"><span class="p-label">What it does</span>
+            <p><span class="lang-en">It streams every AI call&rsquo;s cost, speed, and errors into Splunk in real time. When something spikes &mdash; cost over budget, a latency burst, a data-leak rule trip &mdash; it automatically switches to a cheaper or safer setting within milliseconds, then restores normal once things calm down. A multi-model router sends each request to the best-value model across providers.</span><span class="lang-ko">모든 AI 호출의 비용&middot;속도&middot;오류를 실시간으로 Splunk에 흘려보냅니다. 비용 초과&middot;지연 급증&middot;데이터 유출 규칙 위반 같은 문제가 생기면 밀리초 안에 더 싸거나 안전한 설정으로 자동 전환하고, 진정되면 원상 복구합니다. 멀티모델 라우터가 각 요청을 제공사 간 &lsquo;가성비 최적&rsquo; 모델로 보냅니다.</span></p>
+          </div>
+          <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
+            <p><span class="lang-en">At fleet scale a human can&rsquo;t watch everything. A telemetry-and-remediation loop catches cost runaways before they hit the invoice &mdash; and keeps the decisions observable.</span><span class="lang-ko">대규모 운영에선 사람이 전부 지켜볼 수 없습니다. 관측&middot;자동조치 루프가 비용 폭주를 청구서에 닿기 전에 잡고, 그 판단을 관찰 가능하게 남깁니다.</span></p>
+          </div>
+          <div class="p-links">
+            <a class="p-btn primary" href="https://unified-ops.streamlit.app" target="_blank" rel="noopener"><span class="lang-en">Live demo &#8599;</span><span class="lang-ko">라이브 데모 &#8599;</span></a>
+            <a class="p-btn" href="https://github.com/sechan9999/unified-ops-ax" target="_blank" rel="noopener">GitHub &#8599;</a>
+            <a class="p-btn" href="https://devpost.com/software/unified-ops-ax" target="_blank" rel="noopener">Devpost &#8599;</a>
+          </div>
+          <div class="chips"><span class="chip">LLM ops</span><span class="chip">Splunk telemetry</span><span class="chip">Auto-remediation</span><span class="chip">Multi-model routing</span></div>
+        </div>
+      </article>
     </main>
 
     <footer>
-      <p><span class="lang-en">A common thread runs through all fifteen: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">열다섯 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
+      <p><span class="lang-en">A common thread runs through all eighteen: take a messy, high-stakes problem and make it <strong>observable, governed, and safe for a human to act on</strong> &mdash; not fully automated away.</span><span class="lang-ko">열여덟 프로젝트를 관통하는 하나의 흐름: 복잡하고 위험이 큰 문제를 <strong>관찰 가능하고, 통제되며, 사람이 안전하게 판단할 수 있게</strong> 만드는 것 &mdash; 완전 자동화로 없애는 게 아니라.</span></p>
       <p><a href="./index.html"><span class="lang-en">&larr; Read the AI/ML Delivery Playbook</span><span class="lang-ko">&larr; AI/ML 딜리버리 플레이북 보기</span></a> &nbsp;&middot;&nbsp; <a href="https://devpost.com/hkchun18" target="_blank" rel="noopener">All projects on Devpost &#8599;</a></p>
     </footer>
   </div>
