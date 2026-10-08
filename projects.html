@@ -615,23 +615,25 @@
             <div class="p-num">17</div>
             <div>
               <div class="p-name"><span class="lang-en">Electoral Insights Hub</span><span class="lang-ko">선거 인사이트 허브</span></div>
-              <div class="p-tag"><span class="lang-en">An open, bilingual analytics platform for South Korean presidential elections &mdash; every figure traceable.</span><span class="lang-ko">한국 대선을 위한 공개&middot;이중언어 분석 플랫폼 &mdash; 모든 수치가 추적 가능.</span></div>
+              <div class="p-tag"><span class="lang-en">An open, bilingual analytics platform for South Korean presidential elections and the US midterms &mdash; every figure traceable.</span><span class="lang-ko">한국 대선과 미국 중간선거를 위한 공개&middot;이중언어 분석 플랫폼 &mdash; 모든 수치가 추적 가능.</span></div>
             </div>
           </div>
           <div class="p-block"><span class="p-label">The problem</span>
             <p><span class="lang-en">Official election results are scattered across releases, hard to compare from one election to the next, and rarely reproducible &mdash; and most dashboards are neither bilingual nor precinct-level, so overseas Koreans, journalists and researchers can&rsquo;t easily check the numbers themselves.</span><span class="lang-ko">공식 선거 결과는 여기저기 흩어져 있고, 선거끼리 비교하기 어려우며, 재현도 거의 불가능합니다 &mdash; 게다가 대부분의 대시보드는 이중언어도, 투표구 단위도 아니어서 재외 한인&middot;기자&middot;연구자가 수치를 직접 확인하기 어렵습니다.</span></p>
           </div>
           <div class="p-block"><span class="p-label">What it does</span>
-            <p><span class="lang-en">An open dashboard covers the 18th&ndash;21st presidential elections (2012&ndash;2025) across all 17 provinces &mdash; turnout, vote share, swing, margin and recount views &mdash; live on Cloud Run. A Gemini + Document AI pipeline digitizes ~25,000 scanned 21st-election tally sheets (from NEC releases and disclosure requests) behind a human-review gate, and a bilingual Gemini &ldquo;Ask the Data&rdquo; interface answers in plain Korean or English with cited numbers &mdash; and abstains when the data can&rsquo;t support an answer.</span><span class="lang-ko">제18&ndash;21대 대선(2012&ndash;2025)을 17개 시도 전역에 걸쳐 다루는 공개 대시보드 &mdash; 투표율&middot;득표율&middot;스윙&middot;격차&middot;재검표 뷰 &mdash; 가 Cloud Run에서 운영됩니다. Gemini + Document AI 파이프라인이 21대 개표표 약 25,000장(NEC 공개&middot;정보공개)을 사람 검토 게이트 하에 디지털화하고, 이중언어 Gemini &ldquo;Ask the Data&rdquo;가 인용된 수치로 한국어/영어 답변을 하며 근거가 없으면 유보합니다.</span></p>
+            <p><span class="lang-en">Two live dashboards. For Korea, an open view of the 18th&ndash;21st presidential elections (2012&ndash;2025) across all 17 provinces &mdash; turnout, vote share, swing, margin and recount &mdash; backed by a Gemini + Document AI pipeline that digitizes ~25,000 scanned 21st-election tally sheets (NEC releases and disclosure requests) behind a human-review gate, with a bilingual &ldquo;Ask the Data&rdquo; interface that answers with cited numbers and abstains when unsupported. For the US, a live Korean/English midterm forecast with a public calibration report against the Nov 3, 2026 results.</span><span class="lang-ko">두 개의 라이브 대시보드. 한국은 제18&ndash;21대 대선(2012&ndash;2025)을 17개 시도 전역에 걸쳐 공개 &mdash; 투표율&middot;득표율&middot;스윙&middot;격차&middot;재검표 &mdash; 하고, Gemini + Document AI 파이프라인이 21대 개표표 약 25,000장(NEC 공개&middot;정보공개)을 사람 검토 게이트 하에 디지털화하며, 이중언어 &ldquo;Ask the Data&rdquo;가 인용 수치로 답하고 근거가 없으면 유보합니다. 미국은 한/영 중간선거 예측을 라이브로 제공하고, 2026-11-03 결과 대비 공개 보정 리포트를 냅니다.</span></p>
           </div>
           <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
             <p><span class="lang-en">Voters, journalists and researchers get transparent, reproducible election data &mdash; every number traceable to its source document, and non-partisan by design.</span><span class="lang-ko">유권자&middot;기자&middot;연구자가 투명하고 재현 가능한 선거 데이터를 얻습니다 &mdash; 모든 수치가 출처 문서까지 추적되고, 설계부터 비당파적입니다.</span></p>
           </div>
           <div class="p-links">
-            <a class="p-btn primary" href="https://us-election-insight-hub-38273401034.us-central1.run.app/us?lang=en" target="_blank" rel="noopener"><span class="lang-en">Live demo &#8599;</span><span class="lang-ko">라이브 데모 &#8599;</span></a>
-            <a class="p-btn" href="https://github.com/sechan9999/us-election-insight-hub" target="_blank" rel="noopener">GitHub &#8599;</a>
+            <a class="p-btn primary" href="https://k18to21-election2.vercel.app" target="_blank" rel="noopener"><span class="lang-en">Korea dashboard &#8599;</span><span class="lang-ko">한국 대선 대시보드 &#8599;</span></a>
+            <a class="p-btn primary" href="https://us-election-insight-hub-38273401034.us-central1.run.app/us?lang=en" target="_blank" rel="noopener"><span class="lang-en">US midterm forecast &#8599;</span><span class="lang-ko">미 중간선거 예측 &#8599;</span></a>
+            <a class="p-btn" href="https://github.com/sechan9999/K18to21Election2" target="_blank" rel="noopener">GitHub (KR) &#8599;</a>
+            <a class="p-btn" href="https://github.com/sechan9999/us-election-insight-hub" target="_blank" rel="noopener">GitHub (US) &#8599;</a>
           </div>
-          <div class="chips"><span class="chip">Election analytics</span><span class="chip">Document AI</span><span class="chip">BigQuery</span><span class="chip">Cited bilingual Q&amp;A</span></div>
+          <div class="chips"><span class="chip">Election analytics</span><span class="chip">Document AI</span><span class="chip">BigQuery</span><span class="chip">Forecast + calibration</span><span class="chip">Cited bilingual Q&amp;A</span></div>
         </div>
       </article>
 
