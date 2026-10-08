@@ -609,28 +609,25 @@
 
       <!-- 17 -->
       <article class="project">
-        <div class="p-media"><div class="p-cover"><span class="c-num">17 &middot; Enterprise AI</span><span class="c-word">What is the agent structurally unable to do?</span></div></div>
+        <div class="p-media"><div class="p-cover"><span class="c-num">17 &middot; Civic Data</span><span class="c-word">Every election number, traceable to its source &mdash; and bilingual</span></div></div>
         <div class="p-body">
           <div class="p-top">
             <div class="p-num">17</div>
             <div>
-              <div class="p-name"><span class="lang-en">Gemini Ops Fleet &mdash; a governed agent team</span><span class="lang-ko">Gemini Ops Fleet &mdash; 통제되는 에이전트 팀</span></div>
-              <div class="p-tag"><span class="lang-en">A team of AI agents that structurally can&rsquo;t overstep its permissions.</span><span class="lang-ko">권한을 넘어서는 게 &lsquo;구조적으로 불가능한&rsquo; AI 에이전트 팀.</span></div>
+              <div class="p-name"><span class="lang-en">Electoral Insights Hub</span><span class="lang-ko">선거 인사이트 허브</span></div>
+              <div class="p-tag"><span class="lang-en">An open, bilingual analytics platform for South Korean presidential elections &mdash; every figure traceable.</span><span class="lang-ko">한국 대선을 위한 공개&middot;이중언어 분석 플랫폼 &mdash; 모든 수치가 추적 가능.</span></div>
             </div>
           </div>
           <div class="p-block"><span class="p-label">The problem</span>
-            <p><span class="lang-en">Companies are handing AI agents real access to their systems. But one over-eager agent can read data it shouldn&rsquo;t, or message a customer by mistake &mdash; and you often can&rsquo;t prove, afterward, what it did or why.</span><span class="lang-ko">기업들이 AI 에이전트에게 실제 시스템 접근 권한을 주고 있습니다. 그런데 한 에이전트가 봐선 안 될 데이터를 읽거나 실수로 고객에게 연락할 수 있고, 나중에 &lsquo;AI가 무엇을 왜 했는지&rsquo; 증명하기도 어렵습니다.</span></p>
+            <p><span class="lang-en">Official election results are scattered across releases, hard to compare from one election to the next, and rarely reproducible &mdash; and most dashboards are neither bilingual nor precinct-level, so overseas Koreans, journalists and researchers can&rsquo;t easily check the numbers themselves.</span><span class="lang-ko">공식 선거 결과는 여기저기 흩어져 있고, 선거끼리 비교하기 어려우며, 재현도 거의 불가능합니다 &mdash; 게다가 대부분의 대시보드는 이중언어도, 투표구 단위도 아니어서 재외 한인&middot;기자&middot;연구자가 수치를 직접 확인하기 어렵습니다.</span></p>
           </div>
           <div class="p-block"><span class="p-label">What it does</span>
-            <p><span class="lang-en">A fleet of specialized back-office agents &mdash; ticket triage, knowledge capture, follow-up, reconciliation &mdash; runs on a shared event stream. Each agent&rsquo;s permissions come from the server, not from anything the AI says, so it can&rsquo;t widen its own access; data is filtered by role before the AI ever sees it; and nothing reaches a customer without a human approving it. Every action, including refused ones, is logged. Built on Google ADK and Gemini, deployed to Cloud Run.</span><span class="lang-ko">전담 백오피스 에이전트들(티켓 분류&middot;지식화&middot;팔로업&middot;정합)이 공유 이벤트 스트림 위에서 돕니다. 각 에이전트의 권한은 AI가 말하는 것이 아니라 서버가 정하므로 스스로 권한을 넓힐 수 없고, 데이터는 AI가 보기 전에 역할별로 걸러지며, 고객에게 가는 것은 사람이 승인해야만 나갑니다. 거부된 행동까지 모두 기록됩니다. Google ADK와 Gemini로 만들어 Cloud Run에 배포했습니다.</span></p>
+            <p><span class="lang-en">An open dashboard covers the 18th&ndash;21st presidential elections (2012&ndash;2025) across all 17 provinces &mdash; turnout, vote share, swing, margin and recount views &mdash; live on Cloud Run. A Gemini + Document AI pipeline digitizes ~25,000 scanned 21st-election tally sheets (from NEC releases and disclosure requests) behind a human-review gate, and a bilingual Gemini &ldquo;Ask the Data&rdquo; interface answers in plain Korean or English with cited numbers &mdash; and abstains when the data can&rsquo;t support an answer.</span><span class="lang-ko">제18&ndash;21대 대선(2012&ndash;2025)을 17개 시도 전역에 걸쳐 다루는 공개 대시보드 &mdash; 투표율&middot;득표율&middot;스윙&middot;격차&middot;재검표 뷰 &mdash; 가 Cloud Run에서 운영됩니다. Gemini + Document AI 파이프라인이 21대 개표표 약 25,000장(NEC 공개&middot;정보공개)을 사람 검토 게이트 하에 디지털화하고, 이중언어 Gemini &ldquo;Ask the Data&rdquo;가 인용된 수치로 한국어/영어 답변을 하며 근거가 없으면 유보합니다.</span></p>
           </div>
           <div class="p-block why"><span class="p-label"><span class="lang-en">Why it matters</span><span class="lang-ko">왜 중요한가</span></span>
-            <p><span class="lang-en">In an enterprise the question isn&rsquo;t &ldquo;how much can the agent do&rdquo; but &ldquo;what is it structurally unable to do&rdquo; &mdash; safety enforced in code, not asked of the model.</span><span class="lang-ko">기업에서 중요한 건 &ldquo;에이전트가 얼마나 많이 하나&rdquo;가 아니라 &ldquo;구조적으로 무엇을 못 하게 되어 있나&rdquo;입니다 &mdash; 모델에게 부탁하는 안전이 아니라 코드로 강제되는 안전.</span></p>
+            <p><span class="lang-en">Voters, journalists and researchers get transparent, reproducible election data &mdash; every number traceable to its source document, and non-partisan by design.</span><span class="lang-ko">유권자&middot;기자&middot;연구자가 투명하고 재현 가능한 선거 데이터를 얻습니다 &mdash; 모든 수치가 출처 문서까지 추적되고, 설계부터 비당파적입니다.</span></p>
           </div>
-          <div class="p-links">
-            <a class="p-btn primary" href="https://github.com/sechan9999/gemini-ops-fleet" target="_blank" rel="noopener">GitHub &#8599;</a>
-          </div>
-          <div class="chips"><span class="chip">Multi-agent</span><span class="chip">Google ADK / Gemini</span><span class="chip">Role security</span><span class="chip">Human approval</span></div>
+          <div class="chips"><span class="chip">Election analytics</span><span class="chip">Document AI</span><span class="chip">BigQuery</span><span class="chip">Cited bilingual Q&amp;A</span></div>
         </div>
       </article>
 
